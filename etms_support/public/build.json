@@ -1,0 +1,5 @@
+{
+    "etms_support/js/etms.min.js": [
+        "public/js/etms.js"
+    ]
+}

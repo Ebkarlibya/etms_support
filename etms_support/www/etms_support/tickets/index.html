@@ -1,0 +1,46 @@
+<div class="tickets-page">
+    <div class="row">
+        <div class="col-md-8">
+            <!-- Header -->
+            <div class="table-header">
+                <h5>ETMS Tickets System</h5>
+                <button class="btn btn-primary btn-sm mb-2" onclick="console.log('asdasdassdasd')">New Ticket</button>
+            </div>
+            <!-- Tickets Table -->
+            <table class="table">
+                <tbody>
+                    {% for ticket in tickets %}
+                    <tr>
+                        <td>
+                            <div>
+                                <a href="/etms/tickets/{{name}}">
+                                    {{ticket.subject}}
+                                    <p>{{ticket.creation.strftime("%b %d, %Y, %H:%M %p")}}</p>
+                                </a>
+                            </div>
+                        </td>
+                        <td>{{ticket.department}}</td>
+                        <td>
+                            <span class="badge badge-success">{{ticket.status}}</span>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<style>
+    .tickets-page {
+        /* width: 65%; */
+    }
+    
+    .table-header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-top: 10px;
+        margin-bottom: 5px;
+    }
+</style>
