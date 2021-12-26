@@ -9,7 +9,8 @@
  "field_order": [
   "status",
   "column_break_3",
-  "user",
+  "user_name",
+  "user_image",
   "section_break_4",
   "department",
   "subject",
@@ -26,13 +27,6 @@
    "fieldname": "description",
    "fieldtype": "Text",
    "label": "Description"
-  },
-  {
-   "fieldname": "user",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "User",
-   "options": "User"
   },
   {
    "fieldname": "status",
@@ -61,11 +55,22 @@
   {
    "fieldname": "section_break_4",
    "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "user_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "User Name"
+  },
+  {
+   "fieldname": "user_image",
+   "fieldtype": "Data",
+   "label": "User Image"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2021-12-26 15:00:24.426849",
+ "modified": "2021-12-26 15:43:21.419556",
  "modified_by": "Administrator",
  "module": "Etms Support",
  "name": "Tickets",

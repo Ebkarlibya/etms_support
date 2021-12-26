@@ -6,7 +6,7 @@
             <div class="replay-header">
                 <h5>{{ticket.name}}</h5>
                 <div style="text-align: center;">
-                    <h4 style="margin-bottom: 0px;">{{ticket.subject}}</h4>
+                    <h5 style="margin-bottom: 0px;">{{ticket.subject}}</h5>
                     <span class="badge badge-success">{{ticket.status}}</span>
                 </div>
             </div>
@@ -14,8 +14,8 @@
             <!-- first replay, ticket details -->
             <div class="mt-8">
                 <div class="media">
-                    <img style="width: 2.5rem; height: 2.5rem; object-fit: cover;"
-                        src="/files/thinking-light-bulb-clip-art-sketch-idea.gif" class="mr-3 rounded-circle"
+                    <img style="width: 3.5rem; height: 3.5rem; object-fit: fill;"
+                        src="{{ticket.user_image}}" class="mr-3 rounded-circle"
                         alt="{{ full_name }}">
                     <div class="media-body">
                         <div class="d-flex justify-content-between align-items-baseline">
@@ -35,8 +35,8 @@
             {% for replay in ticket.replays%}
             <div class="mt-8">
                 <div class="media">
-                    <img style="width: 2.5rem; height: 2.5rem; object-fit: cover;"
-                        src="/files/thinking-light-bulb-clip-art-sketch-idea.gif" class="mr-3 rounded-circle"
+                    <img style="width: 3rem; height: 3rem; object-fit: fill;"
+                        src="{{replay.user_image}}" class="mr-3 rounded-circle"
                         >
                     <div class="media-body">
                         <div class="d-flex justify-content-between align-items-baseline">
@@ -55,7 +55,7 @@
             <!-- replay box -->
             <div class="input-form replay-box">
                 <div class="form-group mb-10">
-                    <label for="etms-description">{{_("Your replay")}}</label>
+                    <label for="etms-replay-textarea">{{_("Your replay")}}</label>
                     <textarea id="etms-replay-textarea" cols="30" rows="20" class="form-control input-lg"></textarea>
                 </div>
                 <div class="form-group">
