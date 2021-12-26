@@ -1,12 +1,71 @@
-<div class="tickets-page">
+<div class="replay-page">
     <div class="row">
         <div class="col-md-8">
             <!-- Header -->
             <a href="/etms-support/tickets" class="font-size-sm d-block mb-8 text-muted">← Back to Support Tickets</a>
-            <div class="ticket-header">
+            <div class="replay-header">
                 <h5>{{ticket.name}}</h5>
-                <span class="badge badge-success">{{ticket.status}}</span>
+                <div style="text-align: center;">
+                    <h4 style="margin-bottom: 0px;">{{ticket.subject}}</h4>
+                    <span class="badge badge-success">{{ticket.status}}</span>
+                </div>
+            </div>
 
+            <!-- first replay, ticket details -->
+            <div class="mt-8">
+                <div class="media">
+                    <img style="width: 2.5rem; height: 2.5rem; object-fit: cover;"
+                        src="/files/thinking-light-bulb-clip-art-sketch-idea.gif" class="mr-3 rounded-circle"
+                        alt="{{ full_name }}">
+                    <div class="media-body">
+                        <div class="d-flex justify-content-between align-items-baseline">
+                            <h6 class="mb-4 mt-3">{{ticket.user}}</h6>
+                            <div class="font-size-sm text-muted">{{ticket.creation.strftime("%b %d, %Y, %H:%M %p")}}</div>
+                        </div>
+                        <div class="rounded px-4 py-4"
+                            style="background-color: var(--gray-100); --darkreader-inline-bgcolor:var(--darkreader-bg--gray-100);"
+                            data-darkreader-inline-bgcolor="">
+                            <p>{{ticket.description}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- replays list -->
+            {% for replay in ticket.replays%}
+            <div class="mt-8">
+                <div class="media">
+                    <img style="width: 2.5rem; height: 2.5rem; object-fit: cover;"
+                        src="/files/thinking-light-bulb-clip-art-sketch-idea.gif" class="mr-3 rounded-circle"
+                        >
+                    <div class="media-body">
+                        <div class="d-flex justify-content-between align-items-baseline">
+                            <h6 class="mb-4 mt-3">{{ replay.user }}</h6>
+                            <div class="font-size-sm text-muted">{{replay.creation.strftime("%b %d, %Y, %H:%M %p")}}</div>
+                        </div>
+                        <div class="rounded px-4 py-4"
+                            style="background-color: var(--gray-100); --darkreader-inline-bgcolor:var(--darkreader-bg--gray-100);"
+                            data-darkreader-inline-bgcolor="">
+                            {{ replay.message }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            <!-- replay box -->
+            <div class="input-form replay-box">
+                <div class="form-group mb-10">
+                    <label for="etms-description">{{_("Your replay")}}</label>
+                    <textarea id="etms-replay-textarea" cols="30" rows="20" class="form-control input-lg"></textarea>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary" id="etms-submit-replay"
+                        style="margin-right: 8px;">{{_("Replay")}}</button>
+                    <button class="btn btn-danger" id="etms-close-ticket">{{_("Close Ticket")}}</button>
+                </div>
+
+                <div class="alert alert-success" hidden>{{_("Your Replay submitted, thank you!")}}</div>
+                <div class="alert alert-danger" hidden>{{_("Could not submit your replay, please try again")}}</div>
             </div>
 
         </div>
@@ -14,16 +73,18 @@
 </div>
 
 <style>
-    .ticket-header {
+    .ticket-page {
+        margin-top: 50px;
+    }
+
+    .replay-header {
         display: flex;
         flex-direction: row;
-    }
-    
-    .table-header {
-        /* display: flex;
-        flex-direction: row;
         justify-content: space-between;
-        margin-top: 10px;
-        margin-bottom: 5px;*/
+        align-items: baseline;
+    }
+
+    .replay-box {
+        margin-top: 60px;
     }
 </style>

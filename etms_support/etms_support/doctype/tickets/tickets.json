@@ -7,11 +7,14 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "status",
+  "column_break_3",
+  "user",
+  "section_break_4",
   "department",
   "subject",
   "description",
-  "user",
-  "status"
+  "replays"
  ],
  "fields": [
   {
@@ -44,11 +47,25 @@
    "in_list_view": 1,
    "label": "Department",
    "options": "General\nSales\nBilling\nTechnical Support\nFeature Request\nManagement"
+  },
+  {
+   "fieldname": "replays",
+   "fieldtype": "Table",
+   "label": "Replays",
+   "options": "Ticket Replays"
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_4",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2021-12-26 07:38:51.701270",
+ "modified": "2021-12-26 15:00:24.426849",
  "modified_by": "Administrator",
  "module": "Etms Support",
  "name": "Tickets",
