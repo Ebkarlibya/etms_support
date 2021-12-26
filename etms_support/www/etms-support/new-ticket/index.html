@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="row justify-content-center">
+
+        <div class="input-form mb-4">
+            <div class="form-group">
+                <h5>Hi, {{user}}</h5>
+            </div>
+            <div class="form-group mb-10">
+                <label for="etms-department">{{_("Department")}}</label>
+                <select id="etms-department" class="custom-select form-control">
+                    <option value="none" selected>Please select Department</option>
+                    {% for dep in departments %}
+                        <option value="{{loop.index0}}">{{dep}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group mb-10">
+                <label for="etms-subject">{{_("Subject")}}</label>
+                <input id="etms-subject" class="form-control input-lg" />
+            </div>
+            <div class="form-group mb-10">
+                <label for="etms-description">{{_("Describe the issue")}}</label>
+                <textarea id="etms-description" cols="30" rows="20" class="form-control input-lg"></textarea>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary btn-block" id="etms-submit-ticket">{{_("Submit the ticket")}}</button>
+            </div>
+            <div class="alert alert-success" hidden></div>
+            <div class="alert alert-danger" hidden>{{_("Could not submit your ticket")}}</div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .container {
+        margin-top: 50px;
+    }
+    
+    .input-form {
+        width: 65%;
+    }
+    
+    .table-header {
+        /* display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-top: 10px;
+        margin-bottom: 5px; */
+    }
+</style>

@@ -4,7 +4,7 @@
             <!-- Header -->
             <div class="table-header">
                 <h5>ETMS Tickets System</h5>
-                <button class="btn btn-primary btn-sm mb-2" onclick="console.log('asdasdassdasd')">New Ticket</button>
+                <button class="btn btn-primary btn-sm mb-2" onclick="location.href='/etms-support/new-ticket'">New Ticket</button>
             </div>
             <!-- Tickets Table -->
             <table class="table">
@@ -13,7 +13,7 @@
                     <tr>
                         <td>
                             <div>
-                                <a href="/etms/tickets/{{name}}">
+                                <a href="#{{name}}">
                                     {{ticket.subject}}
                                     <p>{{ticket.creation.strftime("%b %d, %Y, %H:%M %p")}}</p>
                                 </a>

@@ -17,8 +17,7 @@
   {
    "fieldname": "subject",
    "fieldtype": "Data",
-   "label": "Subject",
-   "unique": 1
+   "label": "Subject"
   },
   {
    "fieldname": "description",
@@ -49,7 +48,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2021-12-25 11:28:07.615695",
+ "modified": "2021-12-26 07:38:51.701270",
  "modified_by": "Administrator",
  "module": "Etms Support",
  "name": "Tickets",
