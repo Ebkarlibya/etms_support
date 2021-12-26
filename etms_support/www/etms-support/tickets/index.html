@@ -12,16 +12,24 @@
                     {% for ticket in tickets %}
                     <tr>
                         <td>
-                            <div>
-                                <a href="#{{name}}">
-                                    {{ticket.subject}}
+                            <div class="ticket-anchor">
+                                <a href="/etms-support/ticket?name={{ticket.name}}">
+                                    <h5>{{ticket.subject}}</h5>
                                     <p>{{ticket.creation.strftime("%b %d, %Y, %H:%M %p")}}</p>
                                 </a>
                             </div>
                         </td>
-                        <td>{{ticket.department}}</td>
                         <td>
-                            <span class="badge badge-success">{{ticket.status}}</span>
+                            <span class="badge badge-secondary">{{ticket.department}}</span>
+                        </td>
+                        <td>
+                            {% if ticket.status == "Open" %}
+                                <span class="badge badge-success">{{ticket.status}}</span>
+                            {% elif ticket.status == "Waiting Replay" %}    
+                                <span class="badge badge-warning">{{ticket.status}}</span>
+                            {% else %}
+                                <span class="badge badge-danger">{{ticket.status}}</span>
+                            {% endif %}
                         </td>
                     </tr>
                     {% endfor %}
@@ -35,12 +43,20 @@
     .tickets-page {
         /* width: 65%; */
     }
-    
+    .ticket-anchor > a,
+    .ticket-anchor > a:hover {
+        text-decoration: none;
+        color: black;
+    }
     .table-header {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         margin-top: 10px;
         margin-bottom: 5px;
+    }
+    
+    td {
+        vertical-align: middle;
     }
 </style>
