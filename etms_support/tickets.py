@@ -1,3 +1,4 @@
+from os import error
 import frappe
 
 
@@ -20,11 +21,28 @@ def submit_ticket(departmentIndex, subject, description):
     return ticket
 
 @frappe.whitelist()
+def close_ticket(ticket_name):
+    user = frappe.get_doc("User", frappe.session.user)
+    # tconf = frappe.get_single("Tickets Settings")
+    
+    try:
+        ticket = frappe.get_doc("Tickets", ticket_name)
+        ticket.status = "Closed"
+        ticket.save()
+
+    except Exception as e:
+        print(e)
+
+    return ticket
+
+@frappe.whitelist()
 def submit_replay(ticket_name, replay_text):
     user = frappe.get_doc("User", frappe.session.user)
     tconf = frappe.get_single("Tickets Settings")
     
     ticket = frappe.get_doc("Tickets", ticket_name)
+    if ticket.status == "closed":
+        frappe.throw("Cant replay to a closed Ticket.")
 
     ticket.append("replays", {
         "message": replay_text,

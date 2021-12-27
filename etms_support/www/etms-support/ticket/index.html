@@ -1,4 +1,4 @@
-<div class="replay-page">
+<div class="replay-page" style="direction: ltr; " d="{{ 'rtl' if frappe.lang == 'en' }}">
     <div class="row">
         <div class="col-md-8">
             <!-- Header -->
@@ -7,10 +7,19 @@
                 <h5>{{ticket.name}}</h5>
                 <div style="text-align: center;">
                     <h5 style="margin-bottom: 0px;">{{ticket.subject}}</h5>
+                    {% if ticket.status == "Open" %}
                     <span class="badge badge-success">{{ticket.status}}</span>
+                    {% elif ticket.status == "Waiting Replay" %}    
+                    <span class="badge badge-warning">{{ticket.status}}</span>
+                    {% else %}
+                    <span class="badge badge-danger">{{ticket.status}}</span>
+                    {% endif %}
+                    
                 </div>
             </div>
-
+            {% if ticket.status != "Closed" %}
+            <button class="btn btn-danger btn-sm" id="etms-close-ticket" style="height: 30px;">{{_("Close Ticket")}}</button>
+            {% endif %}
             <!-- first replay, ticket details -->
             <div class="mt-8">
                 <div class="media">
@@ -19,7 +28,7 @@
                         alt="{{ full_name }}">
                     <div class="media-body">
                         <div class="d-flex justify-content-between align-items-baseline">
-                            <h6 class="mb-4 mt-3">{{ticket.user}}</h6>
+                            <h6 class="mb-4 mt-3">{{ticket.user_name}}</h6>
                             <div class="font-size-sm text-muted">{{ticket.creation.strftime("%b %d, %Y, %H:%M %p")}}</div>
                         </div>
                         <div class="rounded px-4 py-4"
@@ -43,7 +52,7 @@
                             <h6 class="mb-4 mt-3">{{ replay.user }}</h6>
                             <div class="font-size-sm text-muted">{{replay.creation.strftime("%b %d, %Y, %H:%M %p")}}</div>
                         </div>
-                        <div class="rounded px-4 py-4"
+                        <div class="d-flex rounded px-4 py-4"
                             style="background-color: var(--gray-100); --darkreader-inline-bgcolor:var(--darkreader-bg--gray-100);"
                             data-darkreader-inline-bgcolor="">
                             {{ replay.message }}
@@ -52,6 +61,7 @@
                 </div>
             </div>
             {% endfor %}
+            {% if ticket.status != "Closed" %}
             <!-- replay box -->
             <div class="input-form replay-box">
                 <div class="form-group mb-10">
@@ -59,15 +69,14 @@
                     <textarea id="etms-replay-textarea" cols="30" rows="20" class="form-control input-lg"></textarea>
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-primary" id="etms-submit-replay"
+                    <button class="btn btn-primary mr-10" id="etms-submit-replay"
                         style="margin-right: 8px;">{{_("Replay")}}</button>
-                    <button class="btn btn-danger" id="etms-close-ticket">{{_("Close Ticket")}}</button>
                 </div>
 
-                <div class="alert alert-success" hidden>{{_("Your Replay submitted, thank you!")}}</div>
-                <div class="alert alert-danger" hidden>{{_("Could not submit your replay, please try again")}}</div>
+                <div class="alert alert-success" hidden></div>
+                <div class="alert alert-danger" hidden></div>
             </div>
-
+            {% endif %}
         </div>
     </div>
 </div>

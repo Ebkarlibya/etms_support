@@ -26,8 +26,8 @@ submitReplay.addEventListener("click", function() {
                         window.location.reload();
                     }, 1500);
                 } else {
-                    alertError.hidden = false;
                     alertError.innerHTML = "Could not submit your ticket, please try again.";
+                    alertError.hidden = false;
                 }
                 // submitTicket.disabled = false;
             }
@@ -37,6 +37,37 @@ submitReplay.addEventListener("click", function() {
 });
 
 // Close ticket
-submitReplay.addEventListener("click", function() {
+closeTicket.addEventListener("click", async function() {
 
+    submitReplay.disabled = true;
+    closeTicket.disabled = true;
+    const urlParams = new URLSearchParams(window.location.search);
+    const ticket_name = urlParams.get('name');
+    try {
+        const res = await frappe.call({
+            method: 'etms_support.tickets.close_ticket',
+            args: { ticket_name: ticket_name },
+            async: true
+        });
+        console.log(res);
+        if (res.message.name) {
+            alertSuccess.hidden = false;
+            alertSuccess.innerHTML = "Your Ticket " + res.message.name + " Closed, Thank you!";
+            setTimeout(function() {
+                window.location.href = "/etms-support/tickets";
+            }, 1500);
+        } else {
+            alertError.innerHTML = "Could not close your ticket, please try again.";
+            alertError.hidden = false;
+            console.log(res.message);
+        }
+    } catch (e) {
+        alertError.hidden = false;
+        alertError.innerHTML = "Could not close your ticket, please try again.";
+        setTimeout(function() {
+            window.location.reload();
+        }, 1500);
+    }
+
+    
 });
