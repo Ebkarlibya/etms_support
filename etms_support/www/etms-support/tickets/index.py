@@ -13,5 +13,5 @@ def get_context(ctx):
             "description",
             "status"
         ])
-    
+    ctx['company'] = frappe.defaults.get_user_default("Company")
     ctx['tickets'] = tickets

@@ -3,8 +3,8 @@
         <div class="col-md-8">
             <!-- Header -->
             <div class="table-header">
-                <h5>ETMS Support System</h5>
-                <button class="btn btn-primary btn-sm mb-5" onclick="location.href='/etms-support/new-ticket'">New Ticket</button>
+                <h5>{{ company }} {{_("Support")}}</h5>
+                <button class="btn btn-primary btn-sm" onclick="location.href='/etms-support/new-ticket'">New Ticket</button>
             </div>
             <!-- Tickets Table -->
             <table class="table">
@@ -14,8 +14,10 @@
                         <td>
                             <div class="ticket-anchor">
                                 <a href="/etms-support/ticket?name={{ticket.name}}">
-                                    <h5>{{ticket.subject}}</h5>
-                                    <small>{{ticket.creation.strftime("%b %d, %Y, %H:%M %p")}}</small>
+                                    <div>
+                                        <h5>{{ticket.subject}}</h5>
+                                        <small>{{ticket.creation.strftime("%b %d, %Y, %H:%M %p")}}</small>
+                                    </div>
                                 </a>
                             </div>
                         </td>
@@ -53,10 +55,14 @@
         flex-direction: row;
         justify-content: space-between;
         margin-top: 10px;
-        margin-bottom: 5px;
+        margin-bottom: 30px;
     }
     
     td {
         vertical-align: middle;
+    }
+    .badge-secondary {
+        color: #000;
+        background-color: #e6f2ff;
     }
 </style>

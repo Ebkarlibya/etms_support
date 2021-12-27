@@ -23,16 +23,15 @@
             <!-- first replay, ticket details -->
             <div class="mt-8">
                 <div class="media">
-                    <img style="width: 3.5rem; height: 3.5rem; object-fit: fill;"
+                    <img class="profile-image-first"
                         src="{{ticket.user_image}}" class="mr-3 rounded-circle"
                         alt="{{ full_name }}">
                     <div class="media-body">
                         <div class="d-flex justify-content-between align-items-baseline">
-                            <h6 class="mb-4 mt-3">{{ticket.user_name}}</h6>
+                            <h6 class="mb-4 mt-3 badge badge-secondary">{{ticket.user_name}}</h6>
                             <div class="font-size-sm text-muted">{{ticket.creation.strftime("%b %d, %Y, %H:%M %p")}}</div>
                         </div>
-                        <div class="rounded px-4 py-4"
-                            style="background-color: var(--gray-100); --darkreader-inline-bgcolor:var(--darkreader-bg--gray-100);"
+                        <div class="d-flex rounded px-4 pt-2 pb-5 text-bubble"
                             data-darkreader-inline-bgcolor="">
                             <p>{{ticket.description}}</p>
                         </div>
@@ -44,18 +43,17 @@
             {% for replay in ticket.replays%}
             <div class="mt-8">
                 <div class="media">
-                    <img style="width: 3rem; height: 3rem; object-fit: fill;"
+                    <img class="profile-image"
                         src="{{replay.user_image}}" class="mr-3 rounded-circle"
                         >
                     <div class="media-body">
                         <div class="d-flex justify-content-between align-items-baseline">
-                            <h6 class="mb-4 mt-3">{{ replay.user }}</h6>
+                            <h6 class="mb-4 mt-3 badge badge-secondary">{{ replay.user_name }}</h6>
                             <div class="font-size-sm text-muted">{{replay.creation.strftime("%b %d, %Y, %H:%M %p")}}</div>
                         </div>
-                        <div class="d-flex rounded px-4 py-4"
-                            style="background-color: var(--gray-100); --darkreader-inline-bgcolor:var(--darkreader-bg--gray-100);"
+                        <div class="d-flex rounded px-4 pt-2 pb-5 text-bubble"
                             data-darkreader-inline-bgcolor="">
-                            {{ replay.message }}
+                            <p>{{replay.message}}</p>
                         </div>
                     </div>
                 </div>
@@ -95,5 +93,30 @@
 
     .replay-box {
         margin-top: 60px;
+    }
+
+    .profile-image-first {
+        width: 4rem;
+        height: 4rem;
+        object-fit: fill;
+        border-radius: 6px;
+        border: solid gray 2px;
+        margin: 0px 8px  0px 0px;
+        box-shadow: deeppink;
+        box-shadow: 0 5px 16px rgb(0 109 0 / 15%);
+    }
+    .profile-image {
+        width: 3.3rem;
+        height: 3.3rem;
+        object-fit: fill;
+        border-radius: 6px;
+        border: solid gray 2px;
+        margin: 0px 8px  0px 0px;
+        box-shadow: deeppink;
+        box-shadow: 0 5px 16px rgb(0 109 0 / 15%);
+    }
+    .text-bubble {
+        background-color: #e6f2ff; 
+        --darkreader-inline-bgcolor:var(--darkreader-bg--gray-100);
     }
 </style>
