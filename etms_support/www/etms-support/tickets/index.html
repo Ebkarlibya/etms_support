@@ -4,8 +4,11 @@
             <!-- Header -->
             <div class="table-header">
                 <h5>{{ company }} {{_("Support")}}</h5>
+                {% if frappe.session.user != "Guest" %}
                 <button class="btn btn-warning btn-sm" onclick="location.href='/etms-support/new-ticket'">New Ticket</button>
+                {% endif %}
             </div>
+            <h6>Login first to create support tickets.</h6>
             <!-- Tickets Table -->
             <table class="table">
                 <tbody>
