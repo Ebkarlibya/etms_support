@@ -8,7 +8,9 @@
                 <button class="btn btn-warning btn-sm" onclick="location.href='/etms-support/new-ticket'">New Ticket</button>
                 {% endif %}
             </div>
+            {% if frappe.session.user == "Guest" %}
             <h6>Login first to create support tickets.</h6>
+            {%endif%}
             <!-- Tickets Table -->
             <table class="table">
                 <tbody>
