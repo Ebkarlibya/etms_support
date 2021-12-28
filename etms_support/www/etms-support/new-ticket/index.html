@@ -1,6 +1,5 @@
 <div class="container">
     <div class="row justify-content-center">
-
         <div class="input-form mb-4">
             <div class="form-group">
                 <h5>Hi, {{user}}</h5>
@@ -22,6 +21,17 @@
                 <label for="etms-description">{{_("Describe the issue")}}</label>
                 <textarea id="etms-description" cols="30" rows="20" class="form-control input-lg"></textarea>
             </div>
+
+            <div class="form-group my-3 mb-10">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroupFileAddon01">{{_("Add Attachment")}}</span>
+                </div>
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" id="etms-attach-file" aria-describedby="inputGroupFileAddon01">
+                  <label class="custom-file-label" for="etms-attach-file">Choose file</label>
+                </div>
+              </div>
+              
             <div class="form-group">
                 <button class="btn btn-primary btn-block" id="etms-submit-ticket">{{_("Submit the ticket")}}</button>
             </div>

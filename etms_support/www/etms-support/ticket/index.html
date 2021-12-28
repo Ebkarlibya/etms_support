@@ -1,3 +1,6 @@
+{% block head_include %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+{% endblock %}
 <div class="replay-page" style="direction: ltr; " d="{{ 'rtl' if frappe.lang == 'en' }}">
     <div class="row">
         <div class="col-md-8">
@@ -6,33 +9,37 @@
             <div class="replay-header">
                 <h5>{{ticket.name}}</h5>
                 <div style="text-align: center;">
-                    <h5 style="margin-bottom: 0px;">{{ticket.subject}}</h5>
+                    <h5 style="margin-bottom: 5px;">{{ticket.subject}}</h5>
                     {% if ticket.status == "Open" %}
                     <span class="badge badge-success">{{ticket.status}}</span>
-                    {% elif ticket.status == "Waiting Replay" %}    
+                    {% elif ticket.status == "Waiting Replay" %}
                     <span class="badge badge-warning">{{ticket.status}}</span>
                     {% else %}
                     <span class="badge badge-danger">{{ticket.status}}</span>
                     {% endif %}
-                    
+
                 </div>
             </div>
-            {% if ticket.status != "Closed" %}
-            <button class="btn btn-danger btn-sm" id="etms-close-ticket" style="height: 30px;">{{_("Close Ticket")}}</button>
+
+            {% if attachment_url %}
+            <a href="{{ attachment_url }}">
+                <button type="button" class="btn btn-warning btn-sm">
+                    <i class="bi bi-paperclip"></i>
+                </button>
+            </a>
             {% endif %}
             <!-- first replay, ticket details -->
             <div class="mt-8">
                 <div class="media">
-                    <img class="profile-image-first"
-                        src="{{ticket.user_image}}" class="mr-3 rounded-circle"
+                    <img class="profile-image-first" src="{{ticket.user_image}}" class="mr-3 rounded-circle"
                         alt="{{ full_name }}">
                     <div class="media-body">
                         <div class="d-flex justify-content-between align-items-baseline">
                             <h6 class="mb-4 mt-3 badge badge-secondary">{{ticket.user_name}}</h6>
-                            <div class="font-size-sm text-muted">{{ticket.creation.strftime("%b %d, %Y, %H:%M %p")}}</div>
+                            <div class="font-size-sm text-muted">{{ticket.creation.strftime("%b %d, %Y, %H:%M %p")}}
+                            </div>
                         </div>
-                        <div class="d-flex rounded px-4 pt-2 pb-5 text-bubble"
-                            data-darkreader-inline-bgcolor="">
+                        <div class="d-flex rounded px-4 pt-2 pb-5 text-bubble" data-darkreader-inline-bgcolor="">
                             <p>{{ticket.description}}</p>
                         </div>
                     </div>
@@ -43,16 +50,14 @@
             {% for replay in ticket.replays%}
             <div class="mt-8">
                 <div class="media">
-                    <img class="profile-image"
-                        src="{{replay.user_image}}" class="mr-3 rounded-circle"
-                        >
+                    <img class="profile-image" src="{{replay.user_image}}" class="mr-3 rounded-circle">
                     <div class="media-body">
                         <div class="d-flex justify-content-between align-items-baseline">
                             <h6 class="mb-4 mt-3 badge badge-secondary">{{ replay.user_name }}</h6>
-                            <div class="font-size-sm text-muted">{{replay.creation.strftime("%b %d, %Y, %H:%M %p")}}</div>
+                            <div class="font-size-sm text-muted">{{replay.creation.strftime("%b %d, %Y, %H:%M %p")}}
+                            </div>
                         </div>
-                        <div class="d-flex rounded px-4 pt-2 pb-5 text-bubble"
-                            data-darkreader-inline-bgcolor="">
+                        <div class="d-flex rounded px-4 pt-2 pb-5 text-bubble" data-darkreader-inline-bgcolor="">
                             <p>{{replay.message}}</p>
                         </div>
                     </div>
@@ -66,9 +71,13 @@
                     <label for="etms-replay-textarea">{{_("Your replay")}}</label>
                     <textarea id="etms-replay-textarea" cols="30" rows="20" class="form-control input-lg"></textarea>
                 </div>
-                <div class="form-group">
+                <div class="form-group replay-box__buttons">
                     <button class="btn btn-primary mr-10" id="etms-submit-replay"
                         style="margin-right: 8px;">{{_("Replay")}}</button>
+
+                    <button class="btn btn-danger btn-sm" id="etms-close-ticket" style="height: 30px;">{{_("Close
+                        Ticket")}}</button>
+
                 </div>
 
                 <div class="alert alert-success" hidden></div>
@@ -94,29 +103,34 @@
     .replay-box {
         margin-top: 60px;
     }
-
+    .replay-box__buttons {
+        display: flex;
+        justify-content: space-between;
+    }
     .profile-image-first {
         width: 4rem;
         height: 4rem;
         object-fit: fill;
         border-radius: 6px;
         border: solid gray 2px;
-        margin: 0px 8px  0px 0px;
+        margin: 0px 8px 0px 0px;
         box-shadow: deeppink;
         box-shadow: 0 5px 16px rgb(0 109 0 / 15%);
     }
+
     .profile-image {
         width: 3.3rem;
         height: 3.3rem;
         object-fit: fill;
         border-radius: 6px;
         border: solid gray 2px;
-        margin: 0px 8px  0px 0px;
+        margin: 0px 8px 0px 0px;
         box-shadow: deeppink;
         box-shadow: 0 5px 16px rgb(0 109 0 / 15%);
     }
+
     .text-bubble {
-        background-color: #e6f2ff; 
-        --darkreader-inline-bgcolor:var(--darkreader-bg--gray-100);
+        background-color: #e6f2ff;
+        --darkreader-inline-bgcolor: var(--darkreader-bg--gray-100);
     }
 </style>
