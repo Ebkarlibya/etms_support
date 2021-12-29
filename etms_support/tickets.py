@@ -12,7 +12,8 @@ def submit_ticket(departmentIndex, subject, description):
 
     ticket.department = depOptions[int(departmentIndex)]
     ticket.subject = subject
-    ticket.description = description,
+    ticket.description = description
+    ticket.user = user.name
     ticket.user_name = user.full_name
     ticket.user_image = user.user_image
 

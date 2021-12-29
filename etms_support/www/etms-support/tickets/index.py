@@ -4,6 +4,9 @@ from frappe import data_migration
 def get_context(ctx):
     ctx.no_cache = 1
     user = frappe.get_doc("User", frappe.session.user)
+    fdict = {}
+    if not user.name == "Administrator":
+        fdict['user'] = user.name
 
     tickets = frappe.get_all(
         "Tickets",
@@ -14,8 +17,7 @@ def get_context(ctx):
             "subject",
             "description",
             "status"
-        ], filters={
-            "user_name": frappe.session.user
-        })
+        ], filters=fdict)
+
     ctx['company'] = frappe.defaults.get_user_default("Company")
     ctx['tickets'] = tickets
