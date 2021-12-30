@@ -1,4 +1,4 @@
-var department = document.querySelector("#etms-department");
+var issues_types = document.querySelector("#etms-issues-types");
 var subject = document.querySelector("#etms-subject");
 var description = document.querySelector("#etms-description");
 var attachFile = document.querySelector("#etms-attach-file");
@@ -10,15 +10,15 @@ var alertError = document.querySelector(".alert-danger");
 
 // Submit ticket
 submitTicket.addEventListener("click", function() {
-    var dep = department.value;
+    var issue_type = issues_types.value;
     var subj = subject.value;
     var desc = description.value;
     var file = attachFile.files[0];
-    if (dep && !isNaN(parseInt(dep)) && subject && desc) {
+    if (issue_type && subject && desc) {
         submitTicket.disabled = true;
         frappe.call({
             method: 'etms_support.tickets.submit_ticket',
-            args: { departmentIndex: dep, subject: subj, description: desc },
+            args: { issue_type: issue_type, subject: subj, description: desc },
             callback: async function(r) {
                 console.log(r.message);
                 if (r.message.name) {
@@ -27,6 +27,7 @@ submitTicket.addEventListener("click", function() {
                         var r = await upload_file(file, "Tickets", ticket_name);
                     }
                     console.log(r);
+                    alertError.hidden = true;
                     alertSuccess.hidden = false;
                     alertSuccess.innerHTML = "Your Ticket: " + ticket_name + " Submitted, Thank you!";
                     setTimeout(function() {
@@ -40,6 +41,9 @@ submitTicket.addEventListener("click", function() {
             }
         })
 
+    } else {
+        alertError.hidden = false;
+        alertError.innerHTML = "All fields required.";
     }
 });
 

@@ -5,11 +5,11 @@
                 <h5>Hi, {{user}}</h5>
             </div>
             <div class="form-group mb-10">
-                <label for="etms-department">{{_("Department")}}</label>
-                <select id="etms-department" class="custom-select form-control">
+                <label for="etms-issues-types">{{_("Department")}}</label>
+                <select id="etms-issues-types" class="custom-select form-control">
                     <option value="none" selected>Please select Department</option>
-                    {% for dep in departments %}
-                        <option value="{{loop.index0}}">{{dep}}</option>
+                    {% for issue_type in issue_types %}
+                        <option value="{{issue_type.name}}">{{issue_type.name}}</option>
                     {% endfor %}
                 </select>
             </div>
