@@ -5,18 +5,22 @@ def get_context(ctx):
     ctx.no_cache = 1
     user = frappe.get_doc("User", frappe.session.user)
     fdict = {}
-    if not user.name == "Administrator":
-        fdict['user'] = user.name
+    # if not user.name == "Administrator":
+        # fdict['user'] = user.name
 
     tickets = frappe.get_all(
-        "Tickets",
+        "Issue",
         fields=[
             "name",
             "creation",
-            "department",
+            "status",
+            "issue_type",
+            "priority",
+            "customer",
             "subject",
+            "company",
+            "raised_by",
             "description",
-            "status"
         ], filters=fdict)
 
     ctx['company'] = frappe.defaults.get_user_default("Company")

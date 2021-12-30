@@ -17,10 +17,10 @@
                     {% else %}
                     <span class="badge badge-danger">{{ticket.status}}</span>
                     {% endif %}
-
+                    
                 </div>
             </div>
-
+            <p class="badge badge-secondary">{{ticket.issue_type}}</p><br>
             {% if attachment_url %}
             <a href="{{ attachment_url }}" target="_blank">
                 <button type="button" class="btn btn-warning btn-sm">
@@ -31,11 +31,11 @@
             <!-- first replay, ticket details -->
             <div class="mt-8">
                 <div class="media">
-                    <img class="profile-image-first" src="{{ticket.user_image}}" class="mr-3 rounded-circle"
+                    <img class="profile-image-first" src="{{user_details.user_image}}" class="mr-3 rounded-circle"
                         alt="{{ full_name }}">
                     <div class="media-body">
                         <div class="d-flex justify-content-between align-items-baseline">
-                            <h6 class="mb-4 mt-3 badge badge-secondary">{{ticket.user_name}}</h6>
+                            <h6 class="mb-4 mt-3 badge badge-secondary">{{user_details.full_name}}</h6>
                             <div class="font-size-sm text-muted">{{ticket.creation.strftime("%b %d, %Y, %H:%M %p")}}
                             </div>
                         </div>
@@ -46,19 +46,19 @@
                 </div>
             </div>
 
-            <!-- replays list -->
-            {% for replay in ticket.replays%}
+            <!-- comments list -->
+            {% for comment in comments %}
             <div class="mt-8">
                 <div class="media">
-                    <img class="profile-image" src="{{replay.user_image}}" class="mr-3 rounded-circle">
+                    <img class="profile-image" src="{{comment.user_details.user_image}}" class="mr-3 rounded-circle">
                     <div class="media-body">
                         <div class="d-flex justify-content-between align-items-baseline">
-                            <h6 class="mb-4 mt-3 badge badge-secondary">{{ replay.user_name }}</h6>
-                            <div class="font-size-sm text-muted">{{replay.creation.strftime("%b %d, %Y, %H:%M %p")}}
+                            <h6 class="mb-4 mt-3 badge badge-secondary">{{ comment.user_details.full_name }}</h6>
+                            <div class="font-size-sm text-muted">{{comment.creation.strftime("%b %d, %Y, %H:%M %p")}}
                             </div>
                         </div>
                         <div class="d-flex rounded px-4 pt-2 pb-5 text-bubble" data-darkreader-inline-bgcolor="">
-                            <p>{{replay.message}}</p>
+                            <p>{{comment.content}}</p>
                         </div>
                     </div>
                 </div>
