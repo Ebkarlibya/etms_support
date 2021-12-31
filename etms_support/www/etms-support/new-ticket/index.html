@@ -1,3 +1,6 @@
+{% block head_include %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+{% endblock %}
 <div class="container">
     <div class="row justify-content-center">
         <div class="input-form mb-4">
@@ -22,16 +25,46 @@
                 <textarea id="etms-description" cols="30" rows="20" class="form-control input-lg"></textarea>
             </div>
 
-            <div class="form-group my-3 mb-10">
+            <!-- <div class="form-group my-3 mb-10">
                 <div class="input-group-prepend">
-                  <span class="input-group-text" id="inputGroupFileAddon01">{{_("Add Attachment")}}</span>
+                    <span class="input-group-text" id="inputGroupFileAddon01">{{_("Add Attachment")}}</span>
                 </div>
                 <div class="custom-file">
-                  <input type="file" class="custom-file-input" id="etms-attach-file" aria-describedby="inputGroupFileAddon01">
-                  <label class="custom-file-label" for="etms-attach-file">Choose file</label>
+                    <label class="custom-file-label" for="etms-attach-file">Choose file</label>
                 </div>
-              </div>
-              
+            </div> -->
+            
+            <div class="form-group">
+                <div class="etms-audio-recorder">
+                    <div class="clearfix">
+                        <label class="control-label" style="padding-right: 0px;">Attach Media</label>
+                    </div>
+                    <input type="file" id="etms-attach-file" style="display: none;">
+                    <button class="btn btn-default etms-play-btn" hidden type="button">
+                        <i class="bi bi-play-fill"></i>
+                    </button>
+
+                    <button class="btn btn-default etms-record-btn" type="button">
+                        <i class="bi bi-mic-fill"></i>
+                    </button>
+                    <!-- bi bi-stop-fill -->
+                    <button class="btn btn-default etms-trash-btn" hidden type="button">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                    <span class="vertical-divider"></span>
+                    <input type="file" id="etms-attach-file" style="display: none;">
+                    <button class="btn btn-default etms-attach-btn" type="button">
+                        <i class="bi bi-paperclip"></i>
+                    </button>
+                    <!-- <div class="etms-spinner" style="display: inline-block; padding-left: 30px;">
+                        <div class="spinner-border spinner-border text-success" role="status">
+                        </div>
+                    </div> -->
+                    <p class="etms-recorder-timer"></p>
+                    <p class="help-box small text-muted"></p>
+                </div>
+            </div>
+
             <div class="form-group">
                 <button class="btn btn-primary btn-block" id="etms-submit-ticket">{{_("Submit the ticket")}}</button>
             </div>
@@ -45,16 +78,26 @@
     .container {
         margin-top: 50px;
     }
-    
+
     .input-form {
         width: 65%;
     }
-    
+
     .table-header {
         /* display: flex;
         flex-direction: row;
         justify-content: space-between;
         margin-top: 10px;
         margin-bottom: 5px; */
+    }
+    .vertical-divider {
+        display: inline-block;
+        border-right: 1px solid gray;
+        height: 24px;
+        margin: 0px 10px -8px 10px;
+    }
+    .etms-attack-button {
+    }
+    .etms-attached-files-badge {
     }
 </style>
