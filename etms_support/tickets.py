@@ -44,8 +44,15 @@ def submit_replay(ticket_name, replay_text):
     ticket = frappe.get_doc("Issue", ticket_name)
     if ticket.status == "closed":
         frappe.throw("Cant replay to a closed Ticket.")
+    replay = frappe.new_doc("Comment")
+    replay.comment_email = user.name
+    replay.comment_type = "Comment"
+    replay.reference_doctype = "Issue"
+    replay.reference_name = ticket_name
+    replay.content = replay_text
 
-    ticket.add_comment(text=replay_text)
+
+    # ticket.add_comment(text=replay_text)
     # ticket.append("replays", {
     #     "message": replay_text,
     #     "user": user.name,
@@ -53,7 +60,7 @@ def submit_replay(ticket_name, replay_text):
     #     "user_image": user.user_image
     # })
 
-    ticket.save()
-    frappe.db.commit()
+    replay.save()
+    # frappe.db.commit()
 
-    return ticket
+    return replay

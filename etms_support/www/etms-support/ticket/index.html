@@ -63,8 +63,24 @@
                             <div class="font-size-sm text-muted">{{comment.creation.strftime("%b %d, %Y, %H:%M %p")}}
                             </div>
                         </div>
-                        <div class="d-flex rounded px-4 pt-2 pb-5 text-bubble" data-darkreader-inline-bgcolor="">
+                        <div class="d-flex justify-content-between rounded px-4 pt-2 pb-5 text-bubble" data-darkreader-inline-bgcolor="">
                             <p>{{comment.content}}</p>
+                            <div class="att-container">
+                                {% for att in comment.comment_attachments %}
+                                    {% if att.file_url.endswith(".webm") %}
+                                        <button type="button" class="btn btn-warning btn-sm" onclick="playAudio('{{att.file_url}}')"
+                                            style="height: 30px;">
+                                            <i class="bi bi-play"></i>
+                                        </button>
+                                    {% else %}
+                                        <a href="{{ att.file_url }}" target="_blank">
+                                            <button type="button" class="btn btn-warning btn-sm" style="height: 30px; margin-left: 10px;">
+                                                <i class="bi bi-paperclip"></i>
+                                            </button>
+                                        </a>
+                                    {%endif%}
+                                {% endfor %}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -75,7 +91,37 @@
             <div class="input-form replay-box">
                 <div class="form-group mb-10">
                     <label for="etms-replay-textarea">{{_("Your replay")}}</label>
-                    <textarea id="etms-replay-textarea" cols="30" rows="20" class="form-control input-lg"></textarea>
+                    <textarea id="etms-replay-textarea" cols="30" rows="40" class="form-control input-lg"
+                    style="height: 200px;"></textarea>                    
+                    <div class="etms-audio-recorder mt-3">
+                        <!-- <div class="clearfix">
+                            <label class="control-label" style="padding-right: 0px;">Attach Media</label>
+                        </div> -->
+                        <input type="file" id="etms-attach-file" style="display: none;">
+                        <button class="btn btn-default etms-play-btn" hidden type="button">
+                            <i class="bi bi-play-fill"></i>
+                        </button>
+    
+                        <button class="btn btn-default etms-record-btn" type="button">
+                            <i class="bi bi-mic-fill"></i>
+                        </button>
+                        <!-- bi bi-stop-fill -->
+                        <button class="btn btn-default etms-trash-btn" hidden type="button">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                        <span class="vertical-divider"></span>
+                        <input type="file" id="etms-attach-file" style="display: none;">
+                        <button class="btn btn-default etms-attach-btn" type="button">
+                            <i class="bi bi-paperclip"></i>
+                        </button>
+                        <!-- <div class="etms-spinner" style="display: inline-block; padding-left: 30px;">
+                            <div class="spinner-border spinner-border text-success" role="status">
+                            </div>
+                        </div> -->
+                        <p class="etms-recorder-timer"></p>
+                        <p class="help-box small text-muted"></p>
+                    </div>
+                        
                 </div>
                 <div class="form-group replay-box__buttons">
                     <button class="btn btn-primary mr-10" id="etms-submit-replay"
@@ -136,7 +182,19 @@
     }
 
     .text-bubble {
+        position: relative;
         background-color: #e6f2ff;
         --darkreader-inline-bgcolor: var(--darkreader-bg--gray-100);
+    }
+    .vertical-divider {
+        display: inline-block;
+        border-right: 1px solid gray;
+        height: 24px;
+        margin: 0px 10px -8px 10px;
+    }
+    .att-container {
+        position: absolute;
+        right: 19px;
+        top: 49px;
     }
 </style>

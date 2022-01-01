@@ -56,16 +56,17 @@
                     <button class="btn btn-default etms-attach-btn" type="button">
                         <i class="bi bi-paperclip"></i>
                     </button>
-                    <!-- <div class="etms-spinner" style="display: inline-block; padding-left: 30px;">
-                        <div class="spinner-border spinner-border text-success" role="status">
-                        </div>
-                    </div> -->
+
                     <p class="etms-recorder-timer"></p>
                     <p class="help-box small text-muted"></p>
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group" style="display: flex; flex-direction: column; align-items: center;">
+                <div class="etms-spinner" style="display: inline-block; margin-bottom: 20px;" hidden>
+                    <div class="spinner-border spinner-border text-success" role="status">
+                    </div>
+                </div>
                 <button class="btn btn-primary btn-block" id="etms-submit-ticket">{{_("Submit the ticket")}}</button>
             </div>
             <div class="alert alert-success" hidden></div>

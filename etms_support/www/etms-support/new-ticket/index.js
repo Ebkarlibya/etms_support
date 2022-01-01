@@ -3,6 +3,7 @@ var subject = document.querySelector("#etms-subject");
 var description = document.querySelector("#etms-description");
 var attachFile = document.querySelector("#etms-attach-file");
 var attachBtn =  document.querySelector('.etms-attach-btn');
+var spinner = document.querySelector(".etms-spinner");
 var submitTicket = document.querySelector("#etms-submit-ticket");
 var alertSuccess = document.querySelector(".alert-success");
 var alertError = document.querySelector(".alert-danger");
@@ -33,8 +34,10 @@ submitTicket.addEventListener("click", function () {
     var subj = subject.value;
     var desc = description.value;
     var file = attachFile.files[0];
-    if (issue_type && subject && desc) {
+
+    if (issue_type != "none" && subj && desc) {
         submitTicket.disabled = true;
+        spinner.hidden = false;
         frappe.call({
             method: 'etms_support.tickets.submit_ticket',
             args: { issue_type: issue_type, subject: subj, description: desc },
@@ -49,6 +52,7 @@ submitTicket.addEventListener("click", function () {
                         var r2 = await upload_file(etms_recorder.recorded_file.data, "Issue", ticket_name);
                     }
                     console.log(r);
+                    spinner.hidden = true;
                     alertError.hidden = true;
                     alertSuccess.hidden = false;
                     alertSuccess.innerHTML = "Your Ticket: " + ticket_name + " Submitted, Thank you!";
@@ -64,6 +68,7 @@ submitTicket.addEventListener("click", function () {
         })
 
     } else {
+        console.log('else');
         alertError.hidden = false;
         alertError.innerHTML = "All fields required.";
     }
@@ -199,7 +204,6 @@ recBtn.addEventListener("click", async function () {
             isRecording = false;
             rec.stop()
             recBtn.style.backgroundColor = "white";
-            recTimer.hidden = true
             clearInterval(etms_recorder.recTask)
         }
 
@@ -216,6 +220,8 @@ trashBtn.addEventListener("click", async function () {
         recBtn.hidden = false;
         trashBtn.hidden = true;
         etms_recorder.recorded_file = undefined;
+        recTimer.hidden = true
+
     }
 
 });
@@ -247,7 +253,6 @@ function upload_file(file, doctype, docname, name) {
             fd.append("doctype", doctype);
             fd.append("docname", docname);
         }
-        debugger
         xhr.send(fd);
 
         xhr.onreadystatechange = function () {
