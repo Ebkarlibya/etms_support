@@ -4,6 +4,8 @@ from urllib.parse import urljoin
 
 def get_context(ctx):
     ctx.no_cache = 1
+    frappe.only_for(['Customer'], "ETMS Support for Customers and Support Team only")
+
     user = frappe.session.user
     query = frappe.request.query_string
     target_ticket = query.decode('utf-8').split("=")[1]
