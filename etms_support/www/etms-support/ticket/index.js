@@ -71,3 +71,10 @@ closeTicket.addEventListener("click", async function() {
 
     
 });
+
+
+function playAudio(url) {
+    console.log("play: ", url);
+    var ap = new Audio(url)
+    ap.play()
+}

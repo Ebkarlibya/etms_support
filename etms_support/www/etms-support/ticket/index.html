@@ -21,13 +21,19 @@
                 </div>
             </div>
             <p class="badge badge-secondary">{{ticket.issue_type}}</p><br>
-            {% if attachment_url %}
-            <a href="{{ attachment_url }}" target="_blank">
-                <button type="button" class="btn btn-warning btn-sm">
-                    <i class="bi bi-paperclip"></i>
-                </button>
-            </a>
-            {% endif %}
+            {% for att in attachments %}
+                {% if att.file_url.endswith(".webm") %}
+                    <button type="button" class="btn btn-warning btn-sm" onclick="playAudio('{{att.file_url}}')">
+                        <i class="bi bi-play"></i>
+                    </button>
+                {% else %}
+                    <a href="{{ att.file_url }}" target="_blank">
+                        <button type="button" class="btn btn-warning btn-sm">
+                            <i class="bi bi-paperclip"></i>
+                        </button>
+                    </a>
+                {%endif%}
+            {% endfor %}
             <!-- first replay, ticket details -->
             <div class="mt-8">
                 <div class="media">
