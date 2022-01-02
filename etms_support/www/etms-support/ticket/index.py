@@ -4,13 +4,17 @@ from urllib.parse import urljoin
 
 def get_context(ctx):
     ctx.no_cache = 1
-    frappe.only_for(['Customer'], "ETMS Support for Customers and Support Team only")
+    frappe.only_for(["ETMS Support Moderator", "ETMS Support User"])
 
-    user = frappe.session.user
+
+    user = frappe.get_doc("User", frappe.session.user)
     query = frappe.request.query_string
     target_ticket = query.decode('utf-8').split("=")[1]
     
     ticket = frappe.get_doc("Issue", target_ticket)
+    roles = frappe.get_roles(user.username)
+    if ticket.raised_by != user.name and not "ETMS Support Moderator" in roles:
+        frappe.throw("Not Allowed")
     user_details = frappe.get_all("User", fields=["full_name", "user_image"], filters={
         "name": ticket.raised_by
     })[0]

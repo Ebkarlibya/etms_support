@@ -17,7 +17,6 @@ attachBtn.addEventListener('click', function(e) {
     attachFile.click();
 })
 attachFile.onchange = function(e) {
-    console.log();
     if(e.target.files[0]) {
         attachBtn.classList.remove('btn-default');
         attachBtn.classList.add('btn-warning');
@@ -40,29 +39,29 @@ submitReplay.addEventListener("click", function() {
             callback: async function(r) {
                 if (r.message.name) {
                     let replay_name = r.message.name;
-                    console.log(r.message);
                     
                     if(etms_recorder.recorded_file) {
                         await upload_file(etms_recorder.recorded_file.data, "Comment", replay_name)
                     }
-                    console.log(attachFile);
                     if(attachFile.files[0]) {
-                        console.log(attachFile.files[0]);
                         await upload_file(attachFile.files[0], "Comment", replay_name)
                     }
                     alertSuccess.hidden = false;
-                    alertSuccess.innerHTML = "Your Replay Submitted, Thank you!";
+                    alertSuccess.innerHTML = frappe._("Your Replay Submitted, Thank you!");
                     setTimeout(function() {
                         window.location.reload();
                     }, 1500);
                 } else {
-                    alertError.innerHTML = "Could not submit your ticket, please try again.";
+                    alertError.innerHTML = frappe._("Could not submit your ticket, please try again.");
                     alertError.hidden = false;
                 }
                 // submitTicket.disabled = false;
             }
         })
 
+    } else {
+        alertError.innerHTML = frappe._("Replay text is required.");
+        alertError.hidden = false;
     }
 });
 
@@ -79,21 +78,19 @@ closeTicket.addEventListener("click", async function() {
             args: { ticket_name: ticket_name },
             async: true
         });
-        console.log(res);
         if (res.message.name) {
             alertSuccess.hidden = false;
-            alertSuccess.innerHTML = "Your Ticket " + res.message.name + " Closed, Thank you!";
+            alertSuccess.innerHTML = frappe._("Your Ticket " + res.message.name + " Closed, Thank you!");
             setTimeout(function() {
                 window.location.href = "/etms-support/tickets";
             }, 1500);
         } else {
-            alertError.innerHTML = "Could not close your ticket, please try again.";
+            alertError.innerHTML = frappe._("Could not close your ticket, please try again.");
             alertError.hidden = false;
-            console.log(res.message);
         }
     } catch (e) {
         alertError.hidden = false;
-        alertError.innerHTML = "Could not close your ticket, please try again.";
+        alertError.innerHTML = frappe._("Could not close your ticket, please try again.");
         setTimeout(function() {
             window.location.reload();
         }, 1500);
@@ -104,7 +101,6 @@ closeTicket.addEventListener("click", async function() {
 
 
 function playAudio(url) {
-    console.log("play: ", url);
     var ap = new Audio(url)
     ap.play()
 }
@@ -171,7 +167,6 @@ playBtn.addEventListener("click", async function () {
         recTimer.innerText = "";
         playBtn.children[0].classList.remove("bi-stop-fill");
         playBtn.children[0].classList.add("bi-play-fill");
-        console.log('clear play task', etms_recorder.playTask);
         clearInterval(etms_recorder.playTask);
     }
     try {
@@ -249,7 +244,6 @@ recBtn.addEventListener("click", async function () {
 trashBtn.addEventListener("click", async function () {
 
     if (etms_recorder.recorded_file) {
-        console.log('trash');
         playBtn.hidden = true;
         recBtn.hidden = false;
         trashBtn.hidden = true;
@@ -294,7 +288,6 @@ function upload_file(file, doctype, docname, name) {
                     var res = JSON.parse(xhr.response).message;
                     resolve(res);
                 } catch {
-                    console.log('reject', res);
                     reject(res)
                 }
             }

@@ -3,12 +3,15 @@ from frappe import data_migration
 
 def get_context(ctx):
     ctx.no_cache = 1
-    frappe.only_for(['Customer'], "ETMS Support for Customers and Support Team only")
+    frappe.only_for(["ETMS Support Moderator", "ETMS Support User"])
+
 
     user = frappe.get_doc("User", frappe.session.user)
     fdict = {}
-    # if not user.name == "Administrator":
-        # fdict['user'] = user.name
+    roles = frappe.get_roles(user.username)
+
+    if not "ETMS Support Moderator" in roles:
+        fdict['raised_by'] = user.name
 
     tickets = frappe.get_all(
         "Issue",

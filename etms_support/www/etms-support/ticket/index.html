@@ -20,7 +20,7 @@
                     
                 </div>
             </div>
-            <p class="badge badge-secondary">{{ticket.issue_type}}</p><br>
+            <!-- <p class="badge badge-secondary">{{ticket.issue_type}}</p><br> -->
             {% for att in attachments %}
                 {% if att.file_url.endswith(".webm") %}
                     <button type="button" class="btn btn-warning btn-sm" onclick="playAudio('{{att.file_url}}')">

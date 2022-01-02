@@ -173,3 +173,8 @@ user_data_fields = [
 # 	"etms_support.auth.validate"
 # ]
 
+fixtures = [
+	{
+		"dt":"Role", 
+		"filters": [["name", "in", ("ETMS Support User", "ETMS Support Moderator")]]}
+]

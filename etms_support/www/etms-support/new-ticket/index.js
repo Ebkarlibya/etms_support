@@ -18,7 +18,6 @@ attachBtn.addEventListener('click', function(e) {
     attachFile.click();
 })
 attachFile.onchange = function(e) {
-    console.log();
     if(e.target.files[0]) {
         attachBtn.classList.remove('btn-default');
         attachBtn.classList.add('btn-warning');
@@ -42,7 +41,6 @@ submitTicket.addEventListener("click", function () {
             method: 'etms_support.tickets.submit_ticket',
             args: { subject: subj, description: desc },
             callback: async function (r) {
-                console.log(r.message);
                 if (r.message.name) {
                     let ticket_name = r.message.name;
                     if (file) {
@@ -51,7 +49,6 @@ submitTicket.addEventListener("click", function () {
                     if(etms_recorder.recorded_file) {
                         var r2 = await upload_file(etms_recorder.recorded_file.data, "Issue", ticket_name);
                     }
-                    console.log(r);
                     spinner.hidden = true;
                     alertError.hidden = true;
                     alertSuccess.hidden = false;
@@ -68,7 +65,6 @@ submitTicket.addEventListener("click", function () {
         })
 
     } else {
-        console.log('else');
         alertError.hidden = false;
         alertError.innerHTML = "All fields required.";
     }
@@ -138,7 +134,6 @@ playBtn.addEventListener("click", async function () {
         recTimer.innerText = "";
         playBtn.children[0].classList.remove("bi-stop-fill");
         playBtn.children[0].classList.add("bi-play-fill");
-        console.log('clear play task', etms_recorder.playTask);
         clearInterval(etms_recorder.playTask);
     }
     try {
@@ -215,7 +210,6 @@ recBtn.addEventListener("click", async function () {
 trashBtn.addEventListener("click", async function () {
 
     if (etms_recorder.recorded_file) {
-        console.log('trash');
         playBtn.hidden = true;
         recBtn.hidden = false;
         trashBtn.hidden = true;
@@ -261,7 +255,6 @@ function upload_file(file, doctype, docname, name) {
                     var res = JSON.parse(xhr.response).message;
                     resolve(res);
                 } catch {
-                    console.log('reject', res);
                     reject(res)
                 }
             }

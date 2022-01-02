@@ -4,6 +4,7 @@ import frappe
 
 @frappe.whitelist()
 def submit_ticket(subject, description):
+    frappe.only_for(["ETMS Support Moderator", "ETMS Support User"])
     user = frappe.get_doc("User", frappe.session.user)
     # tconf = frappe.get_single("Tickets Settings")
     # depOptions = tconf._meta.fields[0].options.split('\n')
@@ -23,13 +24,14 @@ def submit_ticket(subject, description):
 
 @frappe.whitelist()
 def close_ticket(ticket_name):
+    frappe.only_for(["ETMS Support Moderator", "ETMS Support User"])
     user = frappe.get_doc("User", frappe.session.user)
-    # tconf = frappe.get_single("Tickets Settings")
-    
+            
     try:
         ticket = frappe.get_doc("Issue", ticket_name)
-        ticket.status = "Closed"
-        ticket.save()
+        if ticket.raised_by == user.name or "ETMS Support Moderator" in frappe.get_roles(user.username):
+            ticket.status = "Closed"
+            ticket.save()
 
     except Exception as e:
         print(e)
@@ -38,29 +40,21 @@ def close_ticket(ticket_name):
 
 @frappe.whitelist()
 def submit_replay(ticket_name, replay_text):
+    frappe.only_for(["ETMS Support Moderator", "ETMS Support User"])
+
     user = frappe.get_doc("User", frappe.session.user)
-    # tconf = frappe.get_single("Tickets Settings")
     
     ticket = frappe.get_doc("Issue", ticket_name)
-    if ticket.status == "closed":
-        frappe.throw("Cant replay to a closed Ticket.")
-    replay = frappe.new_doc("Comment")
-    replay.comment_email = user.name
-    replay.comment_type = "Comment"
-    replay.reference_doctype = "Issue"
-    replay.reference_name = ticket_name
-    replay.content = replay_text
+    if ticket.raised_by == user.name or "ETMS Support Moderator" in frappe.get_roles(user.username):
+        if ticket.status == "closed":
+            frappe.throw("Cant replay to a closed Ticket.")
+        replay = frappe.new_doc("Comment")
+        replay.comment_email = user.name
+        replay.comment_type = "Comment"
+        replay.reference_doctype = "Issue"
+        replay.reference_name = ticket_name
+        replay.content = replay_text
 
-
-    # ticket.add_comment(text=replay_text)
-    # ticket.append("replays", {
-    #     "message": replay_text,
-    #     "user": user.name,
-    #     "user_name": user.full_name,
-    #     "user_image": user.user_image
-    # })
-
-    replay.save()
-    # frappe.db.commit()
-
+        replay.save()
+        # frappe.db.commit()
     return replay
