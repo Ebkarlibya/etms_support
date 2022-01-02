@@ -3,14 +3,14 @@ import frappe
 
 
 @frappe.whitelist()
-def submit_ticket(issue_type, subject, description):
+def submit_ticket(subject, description):
     user = frappe.get_doc("User", frappe.session.user)
     # tconf = frappe.get_single("Tickets Settings")
     # depOptions = tconf._meta.fields[0].options.split('\n')
     
     ticket = frappe.new_doc("Issue")
 
-    ticket.issue_type = issue_type
+    # ticket.issue_type = issue_type
     ticket.subject = subject
     ticket.description = description
     ticket.raised_by = user.name
