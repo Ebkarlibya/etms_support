@@ -8,6 +8,7 @@ def get_context(ctx):
 
 
     user = frappe.get_doc("User", frappe.session.user)
+    lang = frappe.lang
     query = frappe.request.query_string
     target_ticket = query.decode('utf-8').split("=")[1]
     
@@ -78,3 +79,4 @@ def get_context(ctx):
     ctx['user_details'] = user_details
     ctx['target_ticket'] = target_ticket
     ctx['ticket'] = ticket
+    ctx['lang'] = lang

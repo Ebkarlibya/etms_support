@@ -7,6 +7,7 @@ def get_context(ctx):
 
 
     user = frappe.get_doc("User", frappe.session.user)
+    lang = frappe.lang
     fdict = {}
     roles = frappe.get_roles(user.username)
 
@@ -30,3 +31,4 @@ def get_context(ctx):
 
     ctx['company'] = frappe.defaults.get_user_default("Company")
     ctx['tickets'] = tickets
+    ctx['lang'] = lang

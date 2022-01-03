@@ -52,7 +52,7 @@ submitTicket.addEventListener("click", function () {
                     spinner.hidden = true;
                     alertError.hidden = true;
                     alertSuccess.hidden = false;
-                    alertSuccess.innerHTML = "Your Ticket: " + ticket_name + " Submitted, Thank you!";
+                    alertSuccess.innerHTML = frappe._("Your Ticket: " + ticket_name + " Submitted, Thank you!");
                     setTimeout(function () {
                         location.href = "/etms-support/tickets";
                     }, 1500);
@@ -66,7 +66,7 @@ submitTicket.addEventListener("click", function () {
 
     } else {
         alertError.hidden = false;
-        alertError.innerHTML = "All fields required.";
+        alertError.innerHTML = frappe._("All fields required.");
     }
 });
 
