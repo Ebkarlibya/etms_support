@@ -13,7 +13,7 @@
                     <h5 style="margin-bottom: 5px;">{{_(ticket.subject)}}</h5>
                     {% if ticket.status == "Open" %}
                     <span class="badge badge-success">{{_(ticket.status)}}</span>
-                    {% elif ticket.status == "Waiting Replay" %}
+                    {% elif ticket.status == "Replied" %}
                     <span class="badge badge-warning">{{_(ticket.status)}}</span>
                     {% else %}
                     <span class="badge badge-danger">{{_(ticket.status)}}</span>

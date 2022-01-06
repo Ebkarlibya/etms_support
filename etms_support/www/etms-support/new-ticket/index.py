@@ -5,12 +5,16 @@ def get_context(ctx):
     ctx.no_cache = 1
     
     frappe.only_for(["ETMS Support Moderator", "ETMS Support User"])
+    user = frappe.get_all("User", fields=["email", "full_name"], filters={"name": frappe.session.user})[0]
     lang = frappe.lang
-    # issues types
-    # issue_types = frappe.get_all("Issue Type")
-    # ctx['issue_types'] = issue_types
+    # get user sites
+    sites = frappe.get_all("ETMS ERP Site", filters={
+        "contact_email": user.email
+    })
+    if len(sites) < 1:
+        frappe.msgprint(frappe._("You dont have any active site"))
 
-    full_name = frappe.get_all("User", fields=["full_name"], filters={"name": frappe.session.user})[0].full_name or ""
     
-    ctx['full_name'] = full_name
+    ctx['full_name'] = user.full_name or ""
     ctx['lang'] = lang
+    ctx['sites'] = sites

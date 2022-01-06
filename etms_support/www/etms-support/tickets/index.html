@@ -13,7 +13,7 @@
                 {% endif %}
             </div>
             {% if frappe.session.user == "Guest" %}
-            <h6>Login first to create support tickets.</h6>
+            <h6>{{_("Login first to create support tickets.")}}</h6>
             {%endif%}
             <!-- Tickets Table -->
             <table class="table">
@@ -36,7 +36,7 @@
                         <td>
                             {% if ticket.status == "Open" %}
                                 <span class="badge badge-success">{{_(ticket.status)}}</span>
-                            {% elif ticket.status == "Waiting Replay" %}    
+                            {% elif ticket.status == "Replied" %}    
                                 <span class="badge badge-warning">{{_(ticket.status)}}</span>
                             {% else %}
                                 <span class="badge badge-danger">{{_(ticket.status)}}</span>

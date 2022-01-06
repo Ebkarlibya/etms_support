@@ -1,4 +1,4 @@
-// var issues_types = document.querySelector("#etms-issues-types");
+var siteName = document.querySelector("#etms-site-name");
 var subject = document.querySelector("#etms-subject");
 var description = document.querySelector("#etms-description");
 var attachFile = document.querySelector("#etms-attach-file");
@@ -29,12 +29,12 @@ attachFile.onchange = function(e) {
 
 // Submit ticket
 submitTicket.addEventListener("click", function () {
-    // var issue_type = issues_types.value;
+    var site_name = siteName.value;
     var subj = subject.value;
     var desc = description.value;
     var file = attachFile.files[0];
 
-    if (subj && desc) {
+    if (site_name != "none" && subj && desc) {
         submitTicket.disabled = true;
         spinner.hidden = false;
         frappe.call({
