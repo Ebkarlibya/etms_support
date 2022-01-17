@@ -29,7 +29,7 @@ def close_ticket(ticket_name):
             
     try:
         ticket = frappe.get_doc("Issue", ticket_name)
-        if ticket.raised_by == user.name or "ETMS Support Moderator" in frappe.get_roles(user.username):
+        if ticket.raised_by == user.name or "ETMS Support Moderator" in frappe.get_roles():
             ticket.status = "Closed"
             ticket.save()
 
@@ -45,7 +45,7 @@ def submit_replay(ticket_name, replay_text):
     user = frappe.get_doc("User", frappe.session.user)
     
     ticket = frappe.get_doc("Issue", ticket_name)
-    if ticket.raised_by == user.name or "ETMS Support Moderator" in frappe.get_roles(user.username):
+    if ticket.raised_by == user.name or "ETMS Support Moderator" in frappe.get_roles():
         if ticket.status == "closed":
             frappe.throw("Cant replay to a closed Ticket.")
         replay = frappe.new_doc("Comment")

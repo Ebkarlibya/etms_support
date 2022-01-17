@@ -13,7 +13,7 @@ def get_context(ctx):
     target_ticket = query.decode('utf-8').split("=")[1]
     
     ticket = frappe.get_doc("Issue", target_ticket)
-    roles = frappe.get_roles(user.username)
+    roles = frappe.get_roles()
     if ticket.raised_by != user.name and not "ETMS Support Moderator" in roles:
         frappe.throw("Not Allowed")
     user_details = frappe.get_all("User", fields=["full_name", "user_image"], filters={
