@@ -9,7 +9,7 @@
                 <h5>{{_("Hello") + " " + full_name}}</h5>
             </div>
             <div class="form-group mb-10">
-                <label for="etms-site-name">{{_("Related Site")}}</label>
+                <label for="etms-site-name" class="reqd">{{_("Related Site")}}</label>
                 <select id="etms-site-name" class="custom-select form-control">
                     <option value="none" selected>{{_("Please select your site")}}</option>
                     {% for site in sites %}
@@ -18,11 +18,11 @@
                 </select>
             </div>
             <div class="form-group mb-10">
-                <label for="etms-subject">{{_("Subject")}}</label>
+                <label for="etms-subject" class="reqd">{{_("Subject")}}</label>
                 <input id="etms-subject" class="form-control input-lg" />
             </div>
             <div class="form-group mb-10">
-                <label for="etms-description">{{_("Description")}}</label>
+                <label for="etms-description" class="reqd">{{_("Description")}}</label>
                 <textarea id="etms-description" cols="30" rows="20" class="form-control input-lg"></textarea>
             </div>
 
@@ -52,12 +52,14 @@
                     <button class="btn btn-default etms-trash-btn" hidden type="button">
                         <i class="bi bi-trash"></i>
                     </button>
-                    <span class="vertical-divider"></span>
+                    <!-- <span class="vertical-divider"></span> -->
                     <input type="file" id="etms-attach-file" style="display: none;">
-                    <button class="btn btn-default etms-attach-btn" type="button">
-                        <i class="bi bi-paperclip"></i>
-                    </button>
-
+                    <div style="margin-top: 10px; display: flex; align-items: end;">
+                        <button class="btn btn-default etms-attach-btn" type="button">
+                            <i class="bi bi-paperclip"></i>
+                        </button>
+                        <span style="margin: 0px 10px 0px 10px" id="etms-attached-file-name"></span>
+                    </div>
                     <p class="etms-recorder-timer"></p>
                     <p class="help-box small text-muted"></p>
                 </div>
@@ -97,6 +99,10 @@
         border-right: 1px solid gray;
         height: 24px;
         margin: 0px 10px -8px 10px;
+    }
+    .reqd:after {
+        content:" *";
+        color: red;
     }
     .etms-attack-button {
     }

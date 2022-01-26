@@ -7,12 +7,15 @@ var spinner = document.querySelector(".etms-spinner");
 var submitTicket = document.querySelector("#etms-submit-ticket");
 var alertSuccess = document.querySelector(".alert-success");
 var alertError = document.querySelector(".alert-danger");
+var attachedFileName = document.querySelector("#etms-attached-file-name");
+
 
 attachBtn.addEventListener('click', function(e) {
     if(attachFile.files[0]) {
         attachFile.value = null;
         attachBtn.classList.remove('btn-warning');
         attachBtn.classList.add('btn-default');
+        attachedFileName.innerText = "";
         return;    
     }
     attachFile.click();
@@ -21,6 +24,8 @@ attachFile.onchange = function(e) {
     if(e.target.files[0]) {
         attachBtn.classList.remove('btn-default');
         attachBtn.classList.add('btn-warning');
+        console.log(e.target.files[0]);
+        attachedFileName.innerText = e.target.files[0].name;
     } else {
         attachBtn.classList.remove('btn-warning');
         attachBtn.classList.add('btn-default');
@@ -66,10 +71,12 @@ submitTicket.addEventListener("click", function () {
 
     } else {
         alertError.hidden = false;
-        alertError.innerHTML = frappe._("All fields required.");
+        alertError.innerHTML = frappe._("All fields with (*) required.");
+        setTimeout(function(){
+            alertError.hidden = true;
+        }, 3000);
     }
 });
-
 
 
 var playBtn = document.querySelector(".etms-play-btn");
