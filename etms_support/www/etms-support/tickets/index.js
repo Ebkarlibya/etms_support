@@ -40,7 +40,7 @@ issues_table = new DataTable('#tickets-table',{
     info:     true,
     autoWidth : true,
     responsive: false,
-    pageLength: 10,
+    pageLength: 7,
     search: true,
     language: {
         search: "",

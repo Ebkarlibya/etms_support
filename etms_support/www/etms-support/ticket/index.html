@@ -38,7 +38,7 @@
             <!-- first replay, ticket details -->
             <div class="mt-8">
                 <div class="media">
-                    <img class="profile-image-first" src="{{user_details.user_image}}" class="mr-3 rounded-circle"
+                    <img class="profile-image-first" src="{{user_details.user_image or '/assets/frappe/images/default-avatar.png'}}" class="mr-3 rounded-circle"
                         alt="{{ full_name }}">
                     <div class="media-body">
                         <div class="d-flex justify-content-between align-items-baseline">
@@ -57,7 +57,7 @@
             {% for comment in comments %}
             <div class="mt-8">
                 <div class="media">
-                    <img class="profile-image" src="{{comment.user_details.user_image}}" class="mr-3 rounded-circle">
+                    <img class="profile-image" src="{{comment.user_details.user_image or '/assets/frappe/images/default-avatar.png'}}" class="mr-3 rounded-circle">
                     <div class="media-body">
                         <div class="d-flex justify-content-between align-items-baseline">
                             <h6 class="mb-4 mt-3 badge badge-secondary">{{ comment.user_details.full_name }}</h6>
