@@ -110,11 +110,14 @@
                         <button class="btn btn-default etms-trash-btn" hidden type="button">
                             <i class="bi bi-trash"></i>
                         </button>
-                        <span class="vertical-divider"></span>
-                        <input type="file" id="etms-attach-file" style="display: none;">
-                        <button class="btn btn-default etms-attach-btn" type="button">
-                            <i class="bi bi-paperclip"></i>
-                        </button>
+                        <!-- <span class="vertical-divider"></span> -->
+                        <div style="margin-top: 10px; display: flex; align-items: end;">
+                            <input type="file" id="etms-attach-file" style="display: none;">
+                            <button class="btn btn-default etms-attach-btn" style="width: auto;" type="button">
+                                <i class="bi bi-paperclip"></i>
+                            </button>
+                            <span style="margin: 0px 10px 0px 10px" id="etms-attached-file-name"></span>
+                        </div>
                         <!-- <div class="etms-spinner" style="display: inline-block; padding-left: 30px;">
                             <div class="spinner-border spinner-border text-success" role="status">
                             </div>
@@ -128,7 +131,7 @@
                     <button class="btn btn-primary mr-10" id="etms-submit-replay"
                         style="margin-right: 8px;">{{_("Replay")}}</button>
 
-                    <button class="btn btn-danger btn-sm" id="etms-close-ticket" style="height: 30px;">{{_("Close Ticket")}}</button>
+                    <button class="btn btn-danger" id="etms-close-ticket">{{_("Close Ticket")}}</button>
 
                 </div>
 

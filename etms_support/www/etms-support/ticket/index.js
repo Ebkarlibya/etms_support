@@ -5,6 +5,7 @@ var attachBtn =  document.querySelector('.etms-attach-btn');
 var closeTicket = document.querySelector("#etms-close-ticket");
 var alertSuccess = document.querySelector(".alert-success");
 var alertError = document.querySelector(".alert-danger");
+var attachedFileName = document.querySelector("#etms-attached-file-name");
 
 
 attachBtn.addEventListener('click', function(e) {
@@ -12,6 +13,7 @@ attachBtn.addEventListener('click', function(e) {
         attachFile.value = null;
         attachBtn.classList.remove('btn-warning');
         attachBtn.classList.add('btn-default');
+        attachedFileName.innerText = "";
         return;    
     }
     attachFile.click();
@@ -20,6 +22,7 @@ attachFile.onchange = function(e) {
     if(e.target.files[0]) {
         attachBtn.classList.remove('btn-default');
         attachBtn.classList.add('btn-warning');
+        attachedFileName.innerText = e.target.files[0].name;
     } else {
         attachBtn.classList.remove('btn-warning');
         attachBtn.classList.add('btn-default');

@@ -24,7 +24,6 @@ attachFile.onchange = function(e) {
     if(e.target.files[0]) {
         attachBtn.classList.remove('btn-default');
         attachBtn.classList.add('btn-warning');
-        console.log(e.target.files[0]);
         attachedFileName.innerText = e.target.files[0].name;
     } else {
         attachBtn.classList.remove('btn-warning');
