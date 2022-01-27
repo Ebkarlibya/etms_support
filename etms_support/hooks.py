@@ -176,5 +176,10 @@ user_data_fields = [
 fixtures = [
 	{
 		"dt":"Role", 
-		"filters": [["name", "in", ("ETMS Support User", "ETMS Support Moderator")]]}
+		"filters": [["name", "in", ("ETMS Support User", "ETMS Support Moderator")]]
+	},
+	{
+		"dt":"Custom Field", 
+		"filters": [["fieldname", "in", ("related_site")]]
+	}
 ]

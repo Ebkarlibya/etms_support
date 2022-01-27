@@ -44,7 +44,7 @@ submitTicket.addEventListener("click", function () {
         spinner.hidden = false;
         frappe.call({
             method: 'etms_support.tickets.submit_ticket',
-            args: { subject: subj, description: desc },
+            args: { subject: subj, description: desc, site: site_name },
             callback: async function (r) {
                 if (r.message.name) {
                     let ticket_name = r.message.name;

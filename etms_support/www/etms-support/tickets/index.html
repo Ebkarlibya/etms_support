@@ -1,7 +1,14 @@
 {% block head_include %}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.rtl.min.css" integrity="sha384-+qdLaIRZfNu4cVPK/PxJJEy0B0f3Ugv8i482AKY7gwXwhaCroABd086ybrVKTa0q" crossorigin="anonymous">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.11.4/datatables.min.css"/> 
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.11.4/datatables.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.css">
 {% endblock %}
+
 <div class="tickets-page" dir="{{ 'rtl' if lang=='ar' else lang }}">
     <div class="row">
         <div class="col-md-8">
@@ -16,7 +23,36 @@
             <h6>{{_("Login first to create support tickets.")}}</h6>
             {%endif%}
             <!-- Tickets Table -->
-            <table class="table">
+            <div class="etms-search-filters form-group">
+                <select id="etms-search-filters-site" class="form-control">
+                    <option selected value="none">{{_('Site')}}</option>
+                    {% for site in sites %}
+                    <option value="{{site.name}}">{{site.name}}</option>
+                    {% endfor %}
+                    
+                </select>
+                <select id="etms-search-filters-status" class="form-control">
+                    <option selected value="none">{{_('Status')}}</option>
+                    <option value="open">{{_("Open")}}</option>
+                    <option value="closed">{{_("Closed")}}</option>
+                    <option value="replied">{{_("Replied")}}</option>
+                </select>
+                <button class="btn btn-default etms-clear-filters" type="button" style="width: auto;">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+                <!-- <button class="btn btn-sm btn-secondary">{{_("clear filters")}}</button> -->
+            </div>
+                    
+
+            <table class="table" id="tickets-table" style="visibility: hidden;">
+                <thead>
+                    <tr>
+                        <th>{{_("Subject")}}</th>
+                        <th>{{_("Site")}}</th>
+                        <th>{{_("Status")}}</th>
+                    </tr>
+
+                </thead>
                 <tbody>
                     {% for ticket in tickets %}
                     <tr>
@@ -31,6 +67,9 @@
                             </div>
                         </td>
                         
+                        <td>
+                            <p>{{ticket.related_site}}</p>
+                        </td>
                             <!-- <span class="badge badge-secondary">{{ticket.issue_type }}</span> -->
                         
                         <td>
@@ -73,5 +112,15 @@
     .badge-secondary {
         color: #000;
         background-color: #e6f2ff;
+    }
+
+    .etms-search-filters {
+        display: flex;
+        flex-direction: row;
+        /* justify-content: space-between; */
+    }
+    .etms-search-filters > * {
+        width: 20%;
+        margin-inline-end: 10px;
     }
 </style>

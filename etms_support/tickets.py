@@ -3,7 +3,7 @@ import frappe
 
 
 @frappe.whitelist()
-def submit_ticket(subject, description):
+def submit_ticket(subject, description, site):
     frappe.only_for(["ETMS Support Moderator", "ETMS Support User"])
     user = frappe.get_doc("User", frappe.session.user)
     # tconf = frappe.get_single("Tickets Settings")
@@ -15,6 +15,7 @@ def submit_ticket(subject, description):
     ticket.subject = subject
     ticket.description = description
     ticket.raised_by = user.name
+    ticket.related_site = site
     # ticket.user_name = user.full_name
     # ticket.user_image = user.user_image
 
