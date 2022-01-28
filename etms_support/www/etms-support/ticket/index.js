@@ -251,6 +251,8 @@ trashBtn.addEventListener("click", async function () {
         recBtn.hidden = false;
         trashBtn.hidden = true;
         etms_recorder.recorded_file = undefined;
+        recTimer.hidden = true;
+
     }
 
 });

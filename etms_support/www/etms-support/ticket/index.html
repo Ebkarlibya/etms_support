@@ -24,9 +24,11 @@
             <!-- <p class="badge badge-secondary">{{ticket.issue_type}}</p><br> -->
             {% for att in attachments %}
                 {% if att.file_url.endswith(".webm") %}
-                    <button type="button" class="btn btn-warning btn-sm" onclick="playAudio('{{att.file_url}}')">
-                        <i class="bi bi-play"></i>
+                    <button type="button" class="btn btn-warning btn-sm" style="margin-bottom: 10px;" onclick="playAudio('{{att.file_url}}')">
+                        <!-- <i class="bi bi-play"></i> -->
+                        {{_("Play Record")}}
                     </button>
+                    <br>
                 {% else %}
                     <a href="{{ att.file_url }}" target="_blank">
                         <button type="button" class="btn btn-warning btn-sm">
@@ -71,14 +73,15 @@
                                     {% if att.file_url.endswith(".webm") %}
                                         <button type="button" class="btn btn-warning btn-sm" onclick="playAudio('{{att.file_url}}')"
                                             style="height: 30px;">
-                                            <i class="bi bi-play"></i>
+                                            <!-- <i class="bi bi-play"></i> -->
+                                            {{_("Play Record")}}
                                         </button>
                                     {% else %}
                                         <a href="{{ att.file_url }}" target="_blank">
-                                            <button type="button" class="btn btn-warning btn-sm" style="height: 30px; margin-left: 10px;">
+                                            <button type="button" class="btn btn-warning btn-sm" style="height: 30px;  margin: 0px 10px 0px 10px;">
                                                 {{_("Open Attachment")}}
                                             </button>
-                                            <br>
+                                            
                                         </a>
                                     {%endif%}
                                 {% endfor %}
@@ -111,6 +114,7 @@
                         <button class="btn btn-default etms-trash-btn" hidden type="button">
                             <i class="bi bi-trash"></i>
                         </button>
+                        <p class="etms-recorder-timer"></p>
                         <!-- <span class="vertical-divider"></span> -->
                         <div style="margin-top: 10px; display: flex; align-items: end;">
                             <input type="file" id="etms-attach-file" style="display: none;">
@@ -123,7 +127,6 @@
                             <div class="spinner-border spinner-border text-success" role="status">
                             </div>
                         </div> -->
-                        <p class="etms-recorder-timer"></p>
                         <p class="help-box small text-muted"></p>
                     </div>
                         
