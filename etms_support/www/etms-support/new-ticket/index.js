@@ -56,13 +56,13 @@ submitTicket.addEventListener("click", function () {
                     spinner.hidden = true;
                     alertError.hidden = true;
                     alertSuccess.hidden = false;
-                    alertSuccess.innerHTML = frappe._("Your Ticket: " + ticket_name + " Submitted, Thank you!");
+                    alertSuccess.innerHTML = document.querySelector("meta[name='ticket-submitted-text']").content;
                     setTimeout(function () {
                         location.href = "/etms-support/tickets";
                     }, 1500);
                 } else {
                     alertError.hidden = false;
-                    alertError.innerHTML = "Could not submit your ticket, please try again.";
+                    alertError.innerHTML = document.querySelector("meta[name='faild-submit-ticket-text']").content;
                 }
                 // submitTicket.disabled = false;
             }
@@ -70,7 +70,7 @@ submitTicket.addEventListener("click", function () {
 
     } else {
         alertError.hidden = false;
-        alertError.innerHTML = frappe._("All fields with (*) required.");
+        alertError.innerHTML = document.querySelector("meta[name='all-fields-required-text']").content;
         setTimeout(function(){
             alertError.hidden = true;
         }, 3000);
@@ -200,7 +200,7 @@ recBtn.addEventListener("click", async function () {
                 recTimer.innerText = etms_recorder.durFormat(etms_recorder.recSeconds) + " / " + (MAX_RECORDING_TIME / 60).toFixed(2) + " min";
 
             }, 1000);
-            frappe.show_alert(frappe._("Recording Started!"), 3)
+            // frappe.show_alert(frappe._("Recording Started!"), 3)
         } else {
             isRecording = false;
             rec.stop()
@@ -209,7 +209,7 @@ recBtn.addEventListener("click", async function () {
         }
 
     } catch (e) {
-        frappe.msgprint(frappe._("Please Allow Microphone Access."))
+        frappe.msgprint(document.querySelector("meta[name='allow-mic-text']").content)
     }
 });
 // Trash Button

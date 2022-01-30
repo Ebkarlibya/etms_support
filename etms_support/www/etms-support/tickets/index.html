@@ -7,6 +7,9 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.11.4/datatables.min.css"/> 
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.11.4/datatables.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.css">
+<meta name="next_translation" content="{{_('Next')}}" />
+<meta name="previous_translation" content="{{_('Previous')}}" />
+
 {% endblock %}
 
 <div class="tickets-page" dir="{{ 'rtl' if lang=='ar' else lang }}">
@@ -14,7 +17,6 @@
         <div class="col-md-8">
             <!-- Header -->
             <div class="table-header">
-                <h5>{{ company }} {{_("Support")}}</h5>
                 {% if frappe.session.user != "Guest" %}
                 <button class="btn btn-warning btn-sm" onclick="location.href='/etms-support/new-ticket'">{{_("New Ticket")}}</button>
                 {% endif %}

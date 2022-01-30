@@ -51,8 +51,8 @@ issues_table = new DataTable('#tickets-table',{
             }
         },
         paginate: {
-            next: frappe._("Next"),
-            previous: frappe._("Previous")
+            next: document.querySelector("meta[name='next_translation']").content,
+            previous: document.querySelector("meta[name='previous_translation']").content
         }
     }
 });

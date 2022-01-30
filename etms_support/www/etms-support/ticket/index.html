@@ -1,12 +1,19 @@
 {% block head_include %}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.rtl.min.css" integrity="sha384-+qdLaIRZfNu4cVPK/PxJJEy0B0f3Ugv8i482AKY7gwXwhaCroABd086ybrVKTa0q" crossorigin="anonymous">
+
+<meta name="replay-submitted-text", content="{{_('Your Replay Submitted, Thank you!')}}"/>
+<meta name="faild-submit-text" content="{{_('Could not submit your ticket, please try again.')}}"/>
+<meta name="replay-text-required-text" content="{{_('Replay text is required.')}}" />
+<meta name="faild-close-ticket-text" content="{{_('Could not close your ticket, please try again.')}}" />
+<meta name="allow-mic-text" content="{{_('Please Allow Microphone Access.')}}" />
+
 {% endblock %}
 <div class="replay-page" dir="{{ 'rtl' if lang=='ar' else lang }}"  >
     <div class="row">
         <div class="col-md-8">
             <!-- Header -->
-            <a href="/etms-support/tickets" class="font-size-sm d-block mb-8 text-muted">← Back to Support Tickets</a>
+            <a href="/etms-support/tickets" class="font-size-sm d-block mb-8 text-muted">{{_("Back to Support Tickets")}}</a>
             <div class="replay-header">
                 <h5>{{ticket.name}}</h5>
                 <div style="text-align: center;">

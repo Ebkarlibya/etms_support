@@ -50,12 +50,12 @@ submitReplay.addEventListener("click", function() {
                         await upload_file(attachFile.files[0], "Comment", replay_name)
                     }
                     alertSuccess.hidden = false;
-                    alertSuccess.innerHTML = frappe._("Your Replay Submitted, Thank you!");
+                    alertSuccess.innerHTML = document.querySelector("meta[name='replay-submitted-text']").content;
                     setTimeout(function() {
                         window.location.reload();
                     }, 1500);
                 } else {
-                    alertError.innerHTML = frappe._("Could not submit your ticket, please try again.");
+                    alertError.innerHTML = document.querySelector("meta[name='faild-submit-text']").content;
                     alertError.hidden = false;
                 }
                 // submitTicket.disabled = false;
@@ -63,7 +63,7 @@ submitReplay.addEventListener("click", function() {
         })
 
     } else {
-        alertError.innerHTML = frappe._("Replay text is required.");
+        alertError.innerHTML = document.querySelector("meta[name='replay-text-required-text']").content;
         alertError.hidden = false;
     }
 });
@@ -83,17 +83,17 @@ closeTicket.addEventListener("click", async function() {
         });
         if (res.message.name) {
             alertSuccess.hidden = false;
-            alertSuccess.innerHTML = frappe._("Your Ticket " + res.message.name + " Closed, Thank you!");
+            alertSuccess.innerHTML = frappe._("Your Ticket Closed, Thank you!");
             setTimeout(function() {
                 window.location.href = "/etms-support/tickets";
             }, 1500);
         } else {
-            alertError.innerHTML = frappe._("Could not close your ticket, please try again.");
+            alertError.innerHTML = document.querySelector("meta=[name='faild-close-ticket-text']").content;
             alertError.hidden = false;
         }
     } catch (e) {
         alertError.hidden = false;
-        alertError.innerHTML = frappe._("Could not close your ticket, please try again.");
+        alertError.innerHTML = document.querySelector("meta=[name='faild-close-ticket-text']").content;
         setTimeout(function() {
             window.location.reload();
         }, 1500);
@@ -230,7 +230,7 @@ recBtn.addEventListener("click", async function () {
                 recTimer.innerText = etms_recorder.durFormat(etms_recorder.recSeconds) + " / " + (MAX_RECORDING_TIME / 60).toFixed(2) + " min";
 
             }, 1000);
-            frappe.show_alert(frappe._("Recording Started!"), 3)
+            // frappe.show_alert(frappe._("Recording Started!"), 3)
         } else {
             isRecording = false;
             rec.stop()
@@ -240,7 +240,7 @@ recBtn.addEventListener("click", async function () {
         }
 
     } catch (e) {
-        frappe.msgprint(frappe._("Please Allow Microphone Access."))
+        frappe.msgprint(document.querySelector("meta[name='allow-mic-text']").content);
     }
 });
 // Trash Button
