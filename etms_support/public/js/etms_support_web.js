@@ -24,5 +24,5 @@ jQuery(document).ready(function() {
                 input_lang.style.display = "none";
         }
 
-    }, 800);
+    }, 1200);
 })
