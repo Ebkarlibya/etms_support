@@ -16,10 +16,19 @@
             </div>
             <div class="form-group mb-10">
                 <label for="etms-site-name" class="reqd">{{_("Related Site")}}</label>
-                <select id="etms-site-name" class="custom-select form-control">
+                <select id="etms-site-name" class="custom-select form-control" style="padding: 0px 25px 0px 25px;">
                     <option value="none" selected>{{_("Please select your site")}}</option>
                     {% for site in sites %}
                         <option value="{{site.name}}">{{site.name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group mb-10">
+                <label for="etms-site-issue-type" class="reqd">{{_("Issue Type")}}</label>
+                <select id="etms-site-issue-type" class="custom-select form-control" style="padding: 0px 25px 0px 25px;">
+                    <option value="none" selected>{{_("Issue Type")}}</option>
+                    {% for issue_type in issue_types %}
+                        <option value="{{issue_type.name}}">{{issue_type.name}}</option>
                     {% endfor %}
                 </select>
             </div>
@@ -32,14 +41,6 @@
                 <textarea id="etms-description" cols="30" rows="20" class="form-control input-lg"></textarea>
             </div>
 
-            <!-- <div class="form-group my-3 mb-10">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroupFileAddon01">{{_("Add Attachment")}}</span>
-                </div>
-                <div class="custom-file">
-                    <label class="custom-file-label" for="etms-attach-file">Choose file</label>
-                </div>
-            </div> -->
             
             <div class="form-group">
                 <div class="etms-audio-recorder">

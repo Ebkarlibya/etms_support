@@ -51,6 +51,7 @@
                 <thead>
                     <tr>
                         <th>{{_("Subject")}}</th>
+                        <th>{{_("Issue Type")}}</th>
                         <th>{{_("Site")}}</th>
                         <th>{{_("Status")}}</th>
                     </tr>
@@ -71,9 +72,11 @@
                         </td>
                         
                         <td>
+                            <span class="badge badge-secondary">{{_(ticket.issue_type)}}</span>
+                        </td>
+                        <td>
                             <p>{{ticket.related_site}}</p>
                         </td>
-                            <!-- <span class="badge badge-secondary">{{ticket.issue_type }}</span> -->
                         
                         <td>
                             {% if ticket.status == "Open" %}

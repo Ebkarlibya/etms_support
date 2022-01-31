@@ -1,4 +1,5 @@
 var siteName = document.querySelector("#etms-site-name");
+var issueType = document.querySelector("#etms-site-issue-type");
 var subject = document.querySelector("#etms-subject");
 var description = document.querySelector("#etms-description");
 var attachFile = document.querySelector("#etms-attach-file");
@@ -36,14 +37,16 @@ submitTicket.addEventListener("click", function () {
     var site_name = siteName.value;
     var subj = subject.value;
     var desc = description.value;
+    var itype = issueType.value;
     var file = attachFile.files[0];
+    console.log(itype);
 
-    if (site_name != "none" && subj && desc) {
+    if (site_name != "none" && itype != "none" && subj && desc) {
         submitTicket.disabled = true;
         spinner.hidden = false;
         frappe.call({
             method: 'etms_support.tickets.submit_ticket',
-            args: { subject: subj, description: desc, site: site_name },
+            args: { subject: subj, description: desc, site: site_name, issue_type: itype },
             callback: async function (r) {
                 if (r.message.name) {
                     let ticket_name = r.message.name;

@@ -29,7 +29,7 @@
                     
                 </div>
             </div>
-            <!-- <p class="badge badge-secondary">{{ticket.issue_type}}</p><br> -->
+            <p class="badge badge-secondary">{{_(ticket.issue_type)}}</p><br>
             {% for att in attachments %}
                 {% if att.file_url.endswith(".webm") %}
                     <button type="button" class="btn btn-warning btn-sm" style="margin-bottom: 10px;" onclick="playAudio('{{att.file_url}}')">
@@ -52,7 +52,7 @@
                         alt="{{ full_name }}">
                     <div class="media-body">
                         <div class="d-flex justify-content-between align-items-baseline">
-                            <h6 class="mb-4 mt-3 badge badge-secondary">{{user_details.full_name}}</h6>
+                            <h6 class="mb-4 mt-3 mr-2 badge badge-secondary">{{user_details.full_name}}</h6>
                             <div class="font-size-sm text-muted">{{ticket.creation.strftime("%b %d, %Y, %H:%M %p")}}
                             </div>
                         </div>
