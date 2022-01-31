@@ -18,7 +18,7 @@ app_license = "MIT"
 
 # include js, css files in header of web template
 # web_include_css = "/assets/etms_support/css/etms_support.css"
-# web_include_js = "/assets/etms_support/css/etms_support.js"
+web_include_js = "/assets/etms_support/js/etms_support_web.js"
 
 # include custom scss in every website theme (without file extension ".scss")
 # website_theme_scss = "etms_support/public/scss/website"
