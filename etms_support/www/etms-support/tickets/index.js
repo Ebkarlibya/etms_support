@@ -50,6 +50,7 @@ issues_table = new DataTable('#tickets-table',{
                 search: 'Searching:'
             }
         },
+        emptyTable: document.querySelector("meta[name='nodata_translation']").content, 
         paginate: {
             next: document.querySelector("meta[name='next_translation']").content,
             previous: document.querySelector("meta[name='previous_translation']").content

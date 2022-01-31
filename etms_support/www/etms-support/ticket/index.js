@@ -83,17 +83,17 @@ closeTicket.addEventListener("click", async function() {
         });
         if (res.message.name) {
             alertSuccess.hidden = false;
-            alertSuccess.innerHTML = frappe._("Your Ticket Closed, Thank you!");
+            alertSuccess.innerHTML = document.querySelector("meta[name='closed-ticket-text']").content;
             setTimeout(function() {
                 window.location.href = "/etms-support/tickets";
             }, 1500);
         } else {
-            alertError.innerHTML = document.querySelector("meta=[name='faild-close-ticket-text']").content;
+            alertError.innerHTML = document.querySelector("meta[name='faild-close-ticket-text']").content;
             alertError.hidden = false;
         }
     } catch (e) {
         alertError.hidden = false;
-        alertError.innerHTML = document.querySelector("meta=[name='faild-close-ticket-text']").content;
+        alertError.innerHTML = document.querySelector("meta[name='faild-close-ticket-text']").content;
         setTimeout(function() {
             window.location.reload();
         }, 1500);
