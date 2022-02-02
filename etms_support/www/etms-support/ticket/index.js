@@ -6,6 +6,7 @@ var closeTicket = document.querySelector("#etms-close-ticket");
 var alertSuccess = document.querySelector(".alert-success");
 var alertError = document.querySelector(".alert-danger");
 var attachedFileName = document.querySelector("#etms-attached-file-name");
+var playTimer = document.querySelector("#etms-play-timer");
 
 
 attachBtn.addEventListener('click', function(e) {
@@ -102,11 +103,114 @@ closeTicket.addEventListener("click", async function() {
     
 });
 
+class pAudio {
+    playTimer = 1;
+    isPlaying = false;
+    playTaskId;
+    player; // audio
+    playerEl;
+    timerEl;
 
-function playAudio(url) {
-    var ap = new Audio(url)
-    ap.play()
+    constructor(url, playerEl, timerEl) {
+        this.init(url, playerEl, timerEl);
+    }
+    
+    init(url, playerEl, timerEl) {
+        this.player = new Audio(url);
+        this.playerEl = document.querySelector(playerEl);
+        this.timerEl = document.querySelector(timerEl);
+
+        this.player.onplay = () => {
+        
+        this.playTaskId = setInterval(() => {
+            console.log(this.player.duration);
+            this.timerEl.style.visibility = "visible";
+            if(this.player.duration !== Infinity) {
+                    this.timerEl.innerText = this.format_time(this.playTimer) +  " / " + this.format_time(this.player.duration) + " min";
+                } else {
+                    this.timerEl.innerText = this.format_time(this.playTimer) +  " / " + "00:00 min";
+                }
+                this.playTimer++;
+            }, 1000);
+        }
+        this.player.onended = () => {
+            this.resetPlayer();
+        }
+    }
+    
+    play() {
+        if(!this.isPlaying) {
+            this.player.play();
+            this.isPlaying = true;
+
+            this.playerEl.firstElementChild.classList.remove('bi-play');
+            this.playerEl.firstElementChild.classList.add('bi-stop');
+        } else {
+            this.resetPlayer();
+            console.log('reset!!!');
+        }
+    }
+    resetPlayer() {
+        this.playerEl.firstElementChild.classList.remove('bi-stop');
+        this.playerEl.firstElementChild.classList.add('bi-play');
+        this.timerEl.style.visibility = "hidden";
+        this.player.pause();
+        this.player.currentTime = 0;
+        this.isPlaying = false;
+        this.playTimer = 1;
+        clearInterval(this.playTaskId);
+        console.log('reset');
+    }
+
+    format_time = function (time) {
+        var mins = Math.floor(time / 60);
+        if (mins < 10) {
+            mins = '0' + String(mins);
+        }
+        var secs = Math.ceil(time % 60);
+        if (secs < 10) {
+            secs = '0' + String(secs);
+        }
+        return mins + ':' + secs;
+    }
+
 }
+
+var pAudioMain;
+
+function playAudio(url, playerEl, timerEl) {
+    if(!pAudioMain || playerEl !== "#"+pAudioMain.playerEl.id) { 
+        pAudioMain = new pAudio(url, playerEl, timerEl);
+        pAudioMain.play();
+        console.log('init');
+    } else {
+        // console.log(pAudioMain, playerEl, '|', pAudioMain.playerEl.id);
+        pAudioMain.play();
+        console.log('rdy');
+    }
+}
+// var playTimerCounter = 1;
+// var playTimerTask;
+
+// function playAudio(url) {
+//     var ap = new Audio(url);
+//     ap.play();
+    
+//     ap.onplay = function() {
+//         playTimerTask = setInterval(function(){
+//             playTimer.innerText = etms_recorder.durFormat(playTimerCounter) + ' min';
+//             playTimerCounter++;
+//         },1000);
+//     }
+
+//     ap.onended = function() {
+//         clearInterval(playTimerTask)
+//         playTimerCounter = 0;
+//         playTimer.innerText = "";
+//     }
+
+//     console.log(ap);
+// }
 
 var playBtn = document.querySelector(".etms-play-btn");
 var recBtn = document.querySelector(".etms-record-btn");

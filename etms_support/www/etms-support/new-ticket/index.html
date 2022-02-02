@@ -28,7 +28,7 @@
                 <select id="etms-site-issue-type" class="custom-select form-control" style="padding: 0px 25px 0px 25px;">
                     <option value="none" selected>{{_("Issue Type")}}</option>
                     {% for issue_type in issue_types %}
-                        <option value="{{issue_type.name}}">{{issue_type.name}}</option>
+                        <option value="{{issue_type.name}}">{{_(issue_type.name)}}</option>
                     {% endfor %}
                 </select>
             </div>

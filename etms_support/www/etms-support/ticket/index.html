@@ -32,17 +32,23 @@
             <p class="badge badge-secondary">{{_(ticket.issue_type)}}</p><br>
             {% for att in attachments %}
                 {% if att.file_url.endswith(".webm") %}
-                    <button type="button" class="btn btn-warning btn-sm" style="margin-bottom: 10px;" onclick="playAudio('{{att.file_url}}')">
-                        <!-- <i class="bi bi-play"></i> -->
-                        {{_("Play Record")}}
+                    <button id="paudio-play" 
+                        class="btn btn-warning btn-sm" 
+                        style="margin: 0px 5px 0px 5px" 
+
+                        onclick='playAudio("{{att.file_url}}", "#paudio-play", "#etms-play-timer")'>
+                        <i class="bi bi-play"></i>
+                        <!-- {{_("Play Record")}} -->
                     </button>
-                    <br>
-                {% else %}
+                    
+                    {% else %}
                     <a href="{{ att.file_url }}" target="_blank">
                         <button type="button" class="btn btn-warning btn-sm">
-                            {{_("Open Attachment")}}
+                            <i class="bi bi-paperclip"></i>
+                            <!-- {{_("Open Attachment")}} -->
                         </button>
                     </a>
+                    <p id="etms-play-timer" style="margin-top: 5px;"></p>
                 {%endif%}
             {% endfor %}
             <!-- first replay, ticket details -->
@@ -76,24 +82,32 @@
                         </div>
                         <div class="d-flex justify-content-between rounded px-4 pt-2 pb-5 text-bubble" data-darkreader-inline-bgcolor="">
                             <p>{{comment.content}}</p>
-                            <div class="att-container">
-                                {% for att in comment.comment_attachments %}
-                                    {% if att.file_url.endswith(".webm") %}
-                                        <button type="button" class="btn btn-warning btn-sm" onclick="playAudio('{{att.file_url}}')"
-                                            style="height: 30px;">
-                                            <!-- <i class="bi bi-play"></i> -->
-                                            {{_("Play Record")}}
-                                        </button>
-                                    {% else %}
-                                        <a href="{{ att.file_url }}" target="_blank">
-                                            <button type="button" class="btn btn-warning btn-sm" style="height: 30px;  margin: 0px 10px 0px 10px;">
-                                                {{_("Open Attachment")}}
-                                            </button>
-                                            
-                                        </a>
-                                    {%endif%}
-                                {% endfor %}
-                            </div>
+                        </div>
+                        <div class="att-container">
+                            {% set outer_loop = loop %}
+                            {% for att in comment.comment_attachments %}
+                                {% if att.file_url.endswith(".webm") %}
+                                
+                                <button 
+                                    id="paudio-replay-play-{{outer_loop.index}}"
+                                    class="btn btn-warning btn-sm" 
+                                    onclick='playAudio("{{att.file_url}}", "#paudio-replay-play-{{outer_loop.index}}", "#etms-replay-play-timer-{{outer_loop.index}}")'
+                                    style="height: 30px;">
+                                    <i class="bi bi-play"></i>
+                                    <!-- {{_("Play Record")}} -->
+                                </button>
+                                <br>
+                                {% else %}
+                                <a href="{{ att.file_url }}" target="_blank">
+                                    <button type="button" class="btn btn-warning btn-sm" style="height: 30px;  margin: 0px 10px 0px 10px;">
+                                        <i class="bi bi-paperclip"></i>
+                                        <!-- {{_("Open Attachment")}} -->
+                                    </button>
+                                    
+                                </a>
+                                {%endif%}
+                            {% endfor %}
+                                <p id="etms-replay-play-timer-{{outer_loop.index}}" style="margin-top: 8px;visibility: hidden;">00:00 / 00:00 min</p>
                         </div>
                     </div>
                 </div>
@@ -195,9 +209,10 @@
         box-shadow: deeppink;
         box-shadow: 0 5px 16px rgb(0 109 0 / 15%);
     }
-
-    .text-bubble {
+    .media {
         position: relative;
+    }
+    .text-bubble {
         background-color: #e6f2ff;
         --darkreader-inline-bgcolor: var(--darkreader-bg--gray-100);
     }
@@ -209,7 +224,7 @@
     }
     .att-container {
         position: absolute;
-        right: 19px;
-        top: 49px;
+        right: -28px;
+        bottom: -60px;
     }
 </style>
