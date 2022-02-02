@@ -4,9 +4,11 @@ frappe.ui.form.on("Issue", {
 			window.open("/etms-support/ticket?name="+frm.doc.name, "_blank").focus();
 		});
 
-		document.querySelector('.form-attachments').remove();
-		document.querySelector('.comment-box').remove();
-		document.querySelector('.form-footer').remove();
+		if(!frappe.user_roles.includes("ETMS Support Admin")) {
+					document.querySelector('.form-attachments').remove();
+					document.querySelector('.comment-box').remove();
+					document.querySelector('.form-footer').remove();
+		}
 		
 	}
 })
