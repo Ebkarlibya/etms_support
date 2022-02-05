@@ -49,6 +49,14 @@ def submit_replay(ticket_name, replay_text):
     if ticket.raised_by == user.name or "ETMS Support Moderator" in frappe.get_roles():
         if ticket.status == "closed":
             frappe.throw("Cant replay to a closed Ticket.")
+        if "ETMS Support User" in frappe.get_roles():
+            ticket.status = "Open"
+            ticket.save()
+
+        if "ETMS Support Moderator" in frappe.get_roles():
+            ticket.status = "Replied"
+            ticket.save()
+
         replay = frappe.new_doc("Comment")
         replay.comment_email = user.name
         replay.comment_type = "Comment"
