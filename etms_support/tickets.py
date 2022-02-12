@@ -1,6 +1,7 @@
 from os import error
 import frappe
 from frappe import _
+from frappe.frappeclient import FrappeClient
 
 
 @frappe.whitelist()
@@ -86,3 +87,24 @@ def set_approval_status(docname, approval_status):
         return _("ETMS Support: AOES Approved Successfully.")
     elif approval_status == "Not Approved":
         return _("ETMS Support: AOES Rejected Successfully.")
+
+
+
+@frappe.whitelist()
+def aoes_get_site_sid(docname, aoes_docname):
+    etms_site = frappe.get_doc("ETMS ERP Site", docname)
+
+    if frappe.get_value("Action ON ERP Site", aoes_docname, "customer_site_access_approval") != "Approved":
+        frappe.throw("Not Allowed")
+
+    try:
+        site_user = etms_site.get("site_manager_user")
+        site_pass = etms_site.get_password("site_manager_pass")
+
+        client = FrappeClient(url=f"https://{etms_site.name}", username=site_user, password=site_pass, verify=True)
+        sid = client.session.cookies['sid']
+
+        return sid
+    except:
+        frappe.msgprint(_("Please set (Site Manager User) and (Site Manager Password) in (ETMS ERP Site) first. If not please also check that the login info are correct and the site is up and running."), "ETMS Support")
+    
