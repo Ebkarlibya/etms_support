@@ -1,0 +1,102 @@
+{% block head_include %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.rtl.min.css" integrity="sha384-+qdLaIRZfNu4cVPK/PxJJEy0B0f3Ugv8i482AKY7gwXwhaCroABd086ybrVKTa0q" crossorigin="anonymous">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.11.4/datatables.min.css"/> 
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.11.4/datatables.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.css">
+<meta name="next_translation" content="{{_('Next')}}" />
+<meta name="previous_translation" content="{{_('Previous')}}" />
+<meta name="nodata_translation" content="{{_('No Data to show')}}" />
+
+{% endblock %}
+
+<div class="admission-page" dir="{{ 'rtl' if lang=='ar' else lang }}">
+    <div class="row">
+        <div class="col-md-8">
+            <!-- Header -->
+
+            {% if frappe.session.user == "Guest" %}
+            <h6>{{_("Login first to continue.")}}</h6>
+            {%endif%}
+            <!-- admissions Table -->
+
+            <table class="table" id="tickets-table" style="visibility: hidden;">
+                <thead>
+                    <tr>
+                        <th>{{_("Site")}}</th>
+                        <th>{{_("Approval Status")}}</th>
+                        <th>{{_("Action Status")}}</th>
+                        <th>{{_("Site Access Purpose")}}</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    {% for action_site in action_sites %}
+                    <tr>
+                        <td>
+                            <div class="ticket-anchor">
+                                <a href="/etms-support/admission?name={{action_site.name}}">
+                                    <div>
+                                        <h5>{{action_site.name}}</h5>
+                                        <small>{{action_site.creation.strftime("%b %d, %Y, %H:%M %p")}}</small>
+                                    </div>
+                                </a>
+                            </div>
+                        </td>
+                        
+                        <td>
+                            <span class="badge badge-secondary">{{_(action_site.customer_site_access_approval)}}</span>
+                        </td>
+                        <td>
+                            <span class="badge badge-secondary">{{_(action_site.action_status)}}</span>
+                        </td>
+                        
+                        <td>
+                            <span class="badge badge-secondary">{{_(action_site.site_access_purpose)}}</span>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<style>
+    .tickets-page {
+        /* width: 65%; */
+    }
+    .ticket-anchor > a,
+    .ticket-anchor > a:hover {
+        text-decoration: none;
+        color: black;
+    }
+    .table-header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-top: 10px;
+        margin-bottom: 30px;
+    }
+    
+    td {
+        vertical-align: middle;
+    }
+    .badge-secondary {
+        color: #000;
+        background-color: #e6f2ff;
+    }
+
+    .etms-search-filters {
+        display: flex;
+        flex-direction: row;
+        /* justify-content: space-between; */
+    }
+    .etms-search-filters > * {
+        width: 20%;
+        margin-inline-end: 10px;
+    }
+</style>
