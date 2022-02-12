@@ -5,19 +5,22 @@
 <link rel="stylesheet" href="/assets/etms_support/css/alertify.min.css">
 
 <script src="/assets/etms_support/js/alertify.min.js"></script>
-<meta name="aoes-confirm-title", content="{{_('You can Approve or Reject Site Action only once')}}"/>
-<meta name="aoes-confirm-approve", content="{{_('Confirm Selection')}}"/>
-<meta name="aoes-confirm-reject", content="{{_('Cancle')}}"/>
+<meta name="aoes-confirm-title-approve", content="{{_('Are you sure you want Confirm this AOES?, this can be set only once!')}}"/>
+<meta name="aoes-confirm-title-reject", content="{{_('Are you sure you want Reject this AOES?, this can be set only once!')}}"/>
+<meta name="aoes-confirm-approve", content="{{_('Confirm Approval')}}"/>
+<meta name="aoes-confirm-reject", content="{{_('Confirm Rejection')}}"/>
+<meta name="aoes-confirm-cancle", content="{{_('Cancle')}}"/>
 
 
 
 {% endblock %}
 <div class="aoes-page" dir="{{ 'rtl' if lang=='ar' else lang }}"  >
     <div class="row section-one">
+        <h4 style="margin-bottom: 30px">{{_("Action ON ERP Site Approval Form")}}</h4>
         <div class="col-md-4">
             <div class="form-group">
                 <!-- <label for="naming_series">Serial:</label> -->
-                <input type="text" id="naming_series" class="form-control-plaintext" readonly value="{{aoes.name}}"/>
+                <input type="text" id="aoes_docname" class="form-control-plaintext" readonly value="{{aoes.name}}"/>
             </div>
         </div>        
     </div>
@@ -26,14 +29,23 @@
             <label for="etms_erp_site">{{_("Site")}}</label>
             <input type="text" id="etms_erp_site" class="form-control" readonly value="{{aoes.etms_erp_site}}" />
         </div>
-        <div class="col-md-4 form-group">
-            <label for="customer_site_access_approval">{{_("Site Access Approval")}}</label>
-            <select type="text" id="customer_site_access_approval" class="form-control" value="{{aoes.customer_site_access_approval}}">
-                <option value="open">{{_("Open")}}</option>
-                <option value="approved">{{_("Approved")}}</option>
-                <option value="not_approved">{{_("Not Approved")}}</option>
-            </select>
-        </div>
+
+        {% if aoes.customer_site_access_approval == "Open" %}
+            <div class="col-md-4 form-group">
+                <label for="customer_site_access_approval">{{_("Site Access Approval")}}</label>
+                <select type="text" id="customer_site_access_approval" class="form-control" value="{{aoes.customer_site_access_approval}}">
+                    <option value="Open">{{_("Open")}}</option>
+                    <option value="Approved">{{_("Approve")}}</option>
+                    <option value="Not Approved">{{_("Reject")}}</option>
+                </select>
+            </div>
+        {% else %}
+            <!-- show this when customer_site_access_approval is not set to "Open" -->
+            <div class="col-md-4 form-group">
+                <label for="customer_site_access_approval_label">{{_("Related Customer")}}</label>
+                <input type="text" id="customer_site_access_approval_label" readonly class="form-control" value="{{aoes.customer_site_access_approval}}">
+            </div>
+        {% endif %}
     </div>
     <div class="row">
         <div class="col-md-4 form-group">
@@ -70,7 +82,7 @@
         {% if aoes.site_access_purpose == "Other" %}
         <div class="col-md-4 form-group">
             <label for="other">{{_("Other")}}</label>
-            <textarea type="text" id="other" readonly class="form-control" value="{{aoes.other}}"></textarea>
+            <textarea type="text" id="other" readonly class="form-control">{{aoes.other}}</textarea>
         </div>
     {% endif %}
     <!-- section three -->

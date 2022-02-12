@@ -1,5 +1,6 @@
 from os import error
 import frappe
+from frappe import _
 
 
 @frappe.whitelist()
@@ -67,3 +68,21 @@ def submit_replay(ticket_name, replay_text):
         replay.save()
         # frappe.db.commit()
     return replay
+
+@frappe.whitelist()
+def set_approval_status(docname, approval_status):
+    user = frappe.get_doc("User", frappe.session.user)
+    aoes = frappe.get_doc("Action ON ERP Site", docname)
+
+    if user.name != aoes.contact_email or aoes.customer_site_access_approval != "Open":
+        frappe.throw("Not Allowed")
+
+    # contact_email
+    # customer_site_access_approval
+    aoes.customer_site_access_approval = approval_status
+    aoes.save()
+
+    if approval_status == "Approved":
+        return _("ETMS Support: AOES Approved Successfully.")
+    elif approval_status == "Not Approved":
+        return _("ETMS Support: AOES Rejected Successfully.")
