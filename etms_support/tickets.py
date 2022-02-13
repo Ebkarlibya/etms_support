@@ -92,6 +92,7 @@ def set_approval_status(docname, approval_status):
 
 @frappe.whitelist()
 def aoes_get_site_sid(docname, aoes_docname):
+    frappe.only_for("ETMS System Manager", "Not Allowed")
     etms_site = frappe.get_doc("ETMS ERP Site", docname)
 
     if frappe.get_value("Action ON ERP Site", aoes_docname, "customer_site_access_approval") != "Approved":
