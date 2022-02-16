@@ -99,10 +99,11 @@ def aoes_get_site_sid(docname, aoes_docname):
         frappe.throw("Not Allowed")
 
     try:
+        site_url  = etms_site.get("primary_site_domain_url")
         site_user = etms_site.get("site_manager_user")
         site_pass = etms_site.get_password("site_manager_pass")
 
-        client = FrappeClient(url=f"https://{etms_site.name}", username=site_user, password=site_pass, verify=True)
+        client = FrappeClient(url=site_url, username=site_user, password=site_pass, verify=True)
         sid = client.session.cookies['sid']
 
         return sid
