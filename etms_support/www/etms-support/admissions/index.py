@@ -11,8 +11,7 @@ def get_context(ctx):
     fdict = {}
     roles = frappe.get_roles()
 
-    if not "ETMS Support Moderator" in roles:
-        fdict['customer_contact_email'] = user.name
+    fdict['contact_email'] = user.name
 
     action_sites = frappe.get_all(
         "Action ON ERP Site",
