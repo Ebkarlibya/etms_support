@@ -1,4 +1,5 @@
 from os import error
+import site
 import frappe
 from frappe import _
 from frappe.frappeclient import FrappeClient
@@ -106,7 +107,7 @@ def aoes_get_site_sid(docname, aoes_docname):
         client = FrappeClient(url=site_url, username=site_user, password=site_pass, verify=True)
         sid = client.session.cookies['sid']
 
-        return sid
+        return site_url + "/desk?sid=" + sid
     except:
         frappe.msgprint(_("Please set (Site Manager User) and (Site Manager Password) in (ETMS ERP Site) first. If not please also check that the login info are correct and the site is up and running."), "ETMS Support")
     

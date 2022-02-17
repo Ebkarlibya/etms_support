@@ -6,8 +6,7 @@ frappe.ui.form.on("Action ON ERP Site", {
                 args: { docname: frm.doc.etms_erp_site, aoes_docname: frm.docname },
                 callback: function(r) {
                     if(r.message) {
-                        var site_url = "https://" + frm.doc.etms_erp_site + "/desk?sid=" + r.message;
-                        window.open( site_url, "_blank").focus();
+                        window.open( r.message, "_blank").focus();
                     }
                 }
             })

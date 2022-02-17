@@ -7,9 +7,7 @@ def get_context(ctx):
 
 
     user = frappe.get_doc("User", frappe.session.user)
-    lang = frappe.lang
     fdict = {}
-    roles = frappe.get_roles()
 
     fdict['contact_email'] = user.name
 
