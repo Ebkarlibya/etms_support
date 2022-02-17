@@ -13,10 +13,10 @@
 
 
 
-{% endblock %}
+{% endblock %}  
 <div class="aoes-page" dir="{{ 'rtl' if lang=='ar' else lang }}"  >
     <div class="row section-one">
-        <h4 style="margin-bottom: 30px">{{_("Action ON ERP Site Approval Form")}}</h4>
+        <h4 style="margin-bottom: 30px">{{_("Access Approval")}}</h4>
         <div class="col-md-4">
             <div class="form-group">
                 <!-- <label for="naming_series">Serial:</label> -->
@@ -32,7 +32,7 @@
 
         {% if aoes.customer_site_access_approval == "Open" %}
             <div class="col-md-4 form-group">
-                <label for="customer_site_access_approval">{{_("Site Access Approval")}}</label>
+                <label for="customer_site_access_approval">{{_("Customer Site Access Approval")}}</label>
                 <select type="text" id="customer_site_access_approval" class="form-control" value="{{aoes.customer_site_access_approval}}">
                     <option value="Open">{{_("Open")}}</option>
                     <option value="Approved">{{_("Approve")}}</option>
@@ -42,7 +42,7 @@
         {% else %}
             <!-- show this when customer_site_access_approval is not set to "Open" -->
             <div class="col-md-4 form-group">
-                <label for="customer_site_access_approval_label">{{_("Related Customer")}}</label>
+                <label for="customer_site_access_approval_label">{{_("Customer Site Access Approval")}}</label>
                 <input type="text" id="customer_site_access_approval_label" readonly class="form-control" value="{{aoes.customer_site_access_approval}}">
             </div>
         {% endif %}
@@ -73,18 +73,12 @@
             <label for="site_access_purpose">{{_("Site Access Purpose")}}</label>
             <input type="text" id="site_access_purpose" readonly class="form-control" value="{{aoes.site_access_purpose}}">
         </div>
-        {% if aoes.site_access_purpose == "Issue" %}
-            <div class="col-md-4 form-group">
-                <label for="issue_no">{{_("Issue No")}}</label>
-                <input type="text" id="issue_no" readonly class="form-control" value="{{aoes.issue_no}}">
-            </div>
-        {% endif %}
-        {% if aoes.site_access_purpose == "Other" %}
+
         <div class="col-md-4 form-group">
-            <label for="other">{{_("Other")}}</label>
-            <textarea type="text" id="other" readonly class="form-control">{{aoes.other}}</textarea>
+            <label for="issue">{{_("Action Related Issue")}}</label>
+            <input type="text" id="issue" readonly class="form-control" value="{{aoes.issue}}">
         </div>
-    {% endif %}
+
     <!-- section three -->
     <div class="row">
         <div class="col-md-4 form-group">
