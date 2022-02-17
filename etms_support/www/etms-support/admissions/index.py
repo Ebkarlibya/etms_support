@@ -13,6 +13,10 @@ def get_context(ctx):
 
     action_sites = frappe.get_all(
         "Action ON ERP Site",
-        fields="*")
+        fields="*")    
+    action_sites2 = frappe.get_all(
+        "Action ON ERP Site",
+        fields="*", filters={"contact_email": frappe.session.user})
 
     ctx['action_sites'] = action_sites
+    ctx['action_sites2'] = action_sites2

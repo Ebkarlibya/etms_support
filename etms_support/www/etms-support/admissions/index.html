@@ -21,8 +21,27 @@
             {% if frappe.session.user == "Guest" %}
             <h6>{{_("Login first to continue.")}}</h6>
             {%endif%}
-            <!-- admissions Table -->
 
+            <!-- DEBUG -->
+            <h3>Debug Params</h3>
+
+            <h3>Sesstion User: {{frappe.session.user}}</h3>
+
+            <br>
+            <h1>This DEBUG info without filteration</h1>
+            {% for s in action_sites %}
+                <h3>Name: {{s.name}}</h3>
+                <h3>Owner: {{s.owner}}</h3>
+                <h3>Contact Email: {{s.contact_email}}</h3>
+            {% endfor %}
+            <h1>This DEBUG info with filteration</h1>
+            {% for s2 in action_sites2 %}
+            <h3>Name: {{s2.name}}</h3>
+            <h3>Owner: {{s2.owner}}</h3>
+            <h3>Contact Email2: {{s2.contact_email}}</h3>
+        {% endfor %}
+
+            <!-- admissions Table -->
             <table class="table" id="tickets-table" style="visibility: hidden;">
                 <thead>
                     <tr>
