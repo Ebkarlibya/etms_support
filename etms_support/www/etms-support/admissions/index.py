@@ -13,6 +13,6 @@ def get_context(ctx):
 
     action_sites = frappe.get_all(
         "Action ON ERP Site",
-        fields="*", filters=fdict)
+        fields="*")
 
     ctx['action_sites'] = action_sites
