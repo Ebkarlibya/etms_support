@@ -82,7 +82,7 @@ def set_approval_status(docname, approval_status):
     # contact_email
     # customer_site_access_approval
     aoes.customer_site_access_approval = approval_status
-    aoes.save()
+    aoes.save(ignore_permissions=True)
 
     if approval_status == "Approved":
         return _("ETMS Support: AOES Approved Successfully.")
