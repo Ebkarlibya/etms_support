@@ -27,7 +27,7 @@
     <div class="row">
         <div class="col-md-4 form-group">
             <label for="etms_erp_site">{{_("Site")}}</label>
-            <input type="text" id="etms_erp_site" class="form-control" readonly value="{{aoes.etms_erp_site}}" />
+            <input type="text" id="etms_erp_site" class="form-control" readonly value="{{primary_url}}" />
         </div>
 
         {% if aoes.customer_site_access_approval == "Open" %}
@@ -69,11 +69,6 @@
     </div>
     <!-- section two -->
     <div class="row">
-        <div class="col-md-4 form-group">
-            <label for="site_access_purpose">{{_("Site Access Purpose")}}</label>
-            <input type="text" id="site_access_purpose" readonly class="form-control" value="{{aoes.site_access_purpose}}">
-        </div>
-
         <div class="col-md-4 form-group">
             <label for="issue">{{_("Action Related Issue")}}</label>
             <input type="text" id="issue" readonly class="form-control" value="{{aoes.issue}}">
