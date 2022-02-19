@@ -17,7 +17,9 @@
     <div class="row">
         <div class="col-md-8">
             <!-- Header -->
-            <h4 style="margin-bottom: 30px">{{_("Access Approvals")}}</h4>
+            <h4 style="margin-bottom: 20px">{{_("Access Approvals")}}</h4>
+            <a href="/me" style="margin-bottom: 20px" class="font-size-sm d-block mb-8 text-muted">{{_("Back to MyAcount")}}</a>
+
             {% if frappe.session.user == "Guest" %}
             <h6>{{_("Login first to continue.")}}</h6>
             {%endif%}
