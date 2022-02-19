@@ -14,7 +14,7 @@
 
 
 {% endblock %}  
-<div class="aoes-page" dir="{{ 'rtl' if lang=='ar' else lang }}"  >
+<div class="aoes-page" dir="{{ 'rtl' if lang=='ar' else 'ltr' }}"  >
     <div class="row section-one">
         <h4 style="margin-bottom: 30px">{{_("Access Approval")}}</h4>
         <div class="col-md-4">
@@ -43,7 +43,7 @@
             <!-- show this when customer_site_access_approval is not set to "Open" -->
             <div class="col-md-4 form-group">
                 <label for="customer_site_access_approval_label">{{_("Customer Site Access Approval")}}</label>
-                <input type="text" id="customer_site_access_approval_label" readonly class="form-control" value="{{aoes.customer_site_access_approval}}">
+                <input type="text" id="customer_site_access_approval_label" readonly class="form-control" value="{{_(aoes.customer_site_access_approval)}}">
             </div>
         {% endif %}
     </div>
@@ -54,7 +54,7 @@
         </div>
         <div class="col-md-4 form-group">
             <label for="action_status">{{_("Action Status")}}</label>
-            <input type="text" id="action_status" readonly class="form-control" value="{{aoes.action_status}}">
+            <input type="text" id="action_status" readonly class="form-control" value="{{_(aoes.action_status)}}">
         </div>
     </div>
     <div class="row">

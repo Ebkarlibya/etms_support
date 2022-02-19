@@ -11,7 +11,7 @@ frappe.ui.form.on("Action ON ERP Site", {
                 }
             })
         });
-        if(frm.doc.customer_site_access_approval != "Approved") {
+        if(frm.doc.customer_site_access_approval != "Approved" || frm.doc.action_status != "Open") {
             frm.custom_buttons['Login As Site Manager'][0].disabled = true;
         } 
     }

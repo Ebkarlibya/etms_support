@@ -16,3 +16,4 @@ def get_context(ctx):
         fields="*", filters={"contact_email": frappe.session.user})    
 
     ctx['action_sites'] = action_sites
+    ctx['lang'] = frappe.lang

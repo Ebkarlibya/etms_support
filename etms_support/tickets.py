@@ -93,13 +93,15 @@ def set_approval_status(docname, approval_status):
 
 @frappe.whitelist()
 def aoes_get_site_sid(docname, aoes_docname):
-    frappe.only_for("ETMS System Manager", "Not Allowed")
-    etms_site = frappe.get_doc("ETMS ERP Site", docname)
+    frappe.only_for("ETMS System Manager")
 
-    if frappe.get_value("Action ON ERP Site", aoes_docname, "customer_site_access_approval") != "Approved":
+    aoes = frappe.get_doc("Action ON ERP Site", aoes_docname)
+    
+    if aoes.customer_site_access_approval != "Approved" or aoes.action_status != "Open":
         frappe.throw("Not Allowed")
 
     try:
+        etms_site = frappe.get_doc("ETMS ERP Site", docname)
         site_url  = etms_site.get("primary_site_domain_url")
         site_user = etms_site.get("site_manager_user")
         site_pass = etms_site.get_password("site_manager_pass")

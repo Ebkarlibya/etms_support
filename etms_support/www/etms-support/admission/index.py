@@ -21,3 +21,4 @@ def get_context(ctx):
 
     ctx['aoes'] = action_on_erp_site
     ctx['primary_url'] = primary_url
+    ctx['lang'] = frappe.lang
