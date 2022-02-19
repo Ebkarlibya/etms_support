@@ -20,6 +20,11 @@ attachBtn.addEventListener('click', function(e) {
     attachFile.click();
 })
 attachFile.onchange = function(e) {
+    if(e.target.files[0].size > 5242880) {
+        frappe.show_alert(document.querySelector("meta[name='max-attachment-size-text']").content);
+        e.target.value = "";
+        return;
+    }
     if(e.target.files[0]) {
         attachBtn.classList.remove('btn-default');
         attachBtn.classList.add('btn-warning');
