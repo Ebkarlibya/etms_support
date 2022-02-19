@@ -92,7 +92,7 @@ var isRecording = false;
 var isPlaying = false;
 var player = new Audio(""); // media player
 var rec;
-const MAX_RECORDING_TIME = 180
+const MAX_RECORDING_TIME = 120
 
 frappe.provide("etms_recorder");
 etms_recorder = Object();
