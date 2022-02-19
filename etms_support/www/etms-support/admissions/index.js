@@ -1,40 +1,55 @@
-// var siteFilter = document.querySelector("#etms-search-filters-site");
-// var statusFilter = document.querySelector("#etms-search-filters-status");
-// var clearFilters = document.querySelector(".etms-clear-filters");
-var issues_table;
+var siteFilter = document.querySelector("#etms-search-filters-site");
+var approvalStatusFilter = document.querySelector("#etms-search-filters-approval-status");
+var actionStatusFilter = document.querySelector("#etms-search-filters-action-status");
+var clearFilters = document.querySelector(".etms-clear-filters");
+var admissions_table;
 
 
-// siteFilter.onchange = function(e) {
-//     var site_name = e.target.value;
+siteFilter.onchange = function(e) {
+    var site_name = e.target.value;
 
-//     if(site_name != "none") {
-//         issues_table.columns(1).search(site_name);
-//         issues_table.columns(1).draw();
-//     } else {
-//         issues_table.columns(1).search("");
-//         issues_table.columns(1).draw();
-//     }
-// }
+    if(site_name != "none") {
+        console.log(site_name);
+        admissions_table.columns(0).search(site_name);
+        admissions_table.columns(0).draw();
+    } else {
+        admissions_table.columns(0).search("");
+        admissions_table.columns(0).draw();
+    }
+}
 
-// statusFilter.onchange = function(e) {
-//     var status = e.target.value;
+approvalStatusFilter.onchange = function(e) {
+    var status = e.target.value;
 
-//     if(status != "none") {
-//         issues_table.columns(2).search(status);
-//         issues_table.columns(2).draw();
-//     } else {
-//         issues_table.columns(2).search("");
-//         issues_table.columns(2).draw();
-//     }
-// }
-// clearFilters.addEventListener('click', function() {
-//     issues_table.columns(1).search("").draw();
-//     issues_table.columns(2).search("").draw();
-//     siteFilter.value = "none";
-//     statusFilter.value = "none";
-// });
+    if(status != "none") {
+        admissions_table.columns(1).search(status);
+        admissions_table.columns(1).draw();
+    } else {
+        admissions_table.columns(1).search("");
+        admissions_table.columns(1).draw();
+    }
+}
+actionStatusFilter.onchange = function(e) {
+    var status = e.target.value;
 
-issues_table = new DataTable('#tickets-table',{
+    if(status != "none") {
+        admissions_table.columns(2).search(status);
+        admissions_table.columns(2).draw();
+    } else {
+        admissions_table.columns(2).search("");
+        admissions_table.columns(2).draw();
+    }
+}
+clearFilters.addEventListener('click', function() {
+    admissions_table.columns(0).search("").draw();
+    admissions_table.columns(1).search("").draw();
+    admissions_table.columns(2).search("").draw();
+    siteFilter.value = "none";
+    approvalStatusFilter.value = "none";
+    actionStatusFilter.value = "none";
+});
+
+admissions_table = new DataTable('#tickets-table',{
     paging:   true,
     ordering: false,
     info:     true,
@@ -58,7 +73,7 @@ issues_table = new DataTable('#tickets-table',{
     }
 });
 
-issues_table.table().container().classList.remove('form-inline');
+admissions_table.table().container().classList.remove('form-inline');
 document.querySelector("#tickets-table_length").parentElement.parentElement.remove();
 document.querySelector("#tickets-table_info").remove();
 document.querySelector("#tickets-table").style.visibility = "";

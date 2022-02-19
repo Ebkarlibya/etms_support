@@ -25,7 +25,8 @@
             {% if frappe.session.user == "Guest" %}
             <h6>{{_("Login first to create support tickets.")}}</h6>
             {%endif%}
-            <!-- Tickets Table -->
+
+            <!-- Tickets Table filters -->
             <div class="etms-search-filters form-group">
                 <select id="etms-search-filters-site" class="form-control">
                     <option selected value="none">{{_('Site')}}</option>
@@ -43,10 +44,9 @@
                 <button class="btn btn-default etms-clear-filters" type="button" style="width: auto;">
                     <i class="bi bi-x-lg"></i>
                 </button>
-                <!-- <button class="btn btn-sm btn-secondary">{{_("clear filters")}}</button> -->
             </div>
-                    
-
+            
+            <!-- Tickets Table -->
             <table class="table" id="tickets-table" style="visibility: hidden;">
                 <thead>
                     <tr>

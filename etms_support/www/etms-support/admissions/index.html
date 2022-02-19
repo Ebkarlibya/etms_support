@@ -24,7 +24,32 @@
             <h6>{{_("Login first to continue.")}}</h6>
             {%endif%}
 
-            <!-- admissions Table -->
+            <!-- Admissions Table Filters -->
+            <div class="etms-search-filters form-group">
+                <select id="etms-search-filters-site" class="form-control">
+                    <option selected value="none">{{_('Site')}}</option>
+                    {% for action_site in action_sites %}
+                        <option value="{{action_site.name}}">{{action_site.name}}</option>
+                    {% endfor %}
+                </select>
+                <select id="etms-search-filters-approval-status" class="form-control">
+                    <option selected value="none">{{_('Approval Status')}}</option>
+                    <option value="Open">{{_("Open")}}</option>
+                    <option value="Approved">{{_("Approved")}}</option>
+                    <option value="Not Approved">{{_("Not Approved")}}</option>
+                </select>
+                <select id="etms-search-filters-action-status" class="form-control">
+                    <option selected value="none">{{_('Action Status')}}</option>
+                    <option value="Open">{{_("Open")}}</option>
+                    <option value="Approved">{{_("Completed")}}</option>
+                    <option value="Not Approved">{{_("Cancelled")}}</option>
+                </select>
+                <button class="btn btn-default etms-clear-filters" type="button" style="width: auto;">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div>
+
+            <!-- Admissions Table -->
             <table class="table" id="tickets-table" style="visibility: hidden;">
                 <thead>
                     <tr>
