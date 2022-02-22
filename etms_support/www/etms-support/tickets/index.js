@@ -8,11 +8,11 @@ siteFilter.onchange = function(e) {
     var site_name = e.target.value;
 
     if(site_name != "none") {
-        issues_table.columns(1).search(site_name);
-        issues_table.columns(1).draw();
+        issues_table.columns(2).search(site_name);
+        issues_table.columns(2).draw();
     } else {
-        issues_table.columns(1).search("");
-        issues_table.columns(1).draw();
+        issues_table.columns(2).search("");
+        issues_table.columns(2).draw();
     }
 }
 
@@ -20,11 +20,11 @@ statusFilter.onchange = function(e) {
     var status = e.target.value;
 
     if(status != "none") {
-        issues_table.columns(2).search(status);
-        issues_table.columns(2).draw();
+        issues_table.columns(3).search(status);
+        issues_table.columns(3).draw();
     } else {
-        issues_table.columns(2).search("");
-        issues_table.columns(2).draw();
+        issues_table.columns(3).search("");
+        issues_table.columns(3).draw();
     }
 }
 clearFilters.addEventListener('click', function() {
