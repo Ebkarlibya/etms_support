@@ -31,7 +31,7 @@ approvalStatusFilter.onchange = function(e) {
 }
 actionStatusFilter.onchange = function(e) {
     var status = e.target.value;
-
+    console.log("action status", e.target.value)
     if(status != "none") {
         admissions_table.columns(2).search(status);
         admissions_table.columns(2).draw();

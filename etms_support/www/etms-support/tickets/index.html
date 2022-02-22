@@ -16,12 +16,14 @@
 <div class="tickets-page" dir="{{ 'rtl' if lang=='ar' else lang }}">
     <div class="row">
         <div class="col-md-8">
+            
             <!-- Header -->
             <div class="table-header">
                 {% if frappe.session.user != "Guest" %}
                 <button class="btn btn-warning btn-sm" onclick="location.href='/etms-support/new-ticket'">{{_("New Ticket")}}</button>
                 {% endif %}
             </div>
+            <a href="/me" style="margin-bottom: 20px" class="font-size-sm d-block mb-8 text-muted">{{_("Back to MyAcount")}}</a>
             {% if frappe.session.user == "Guest" %}
             <h6>{{_("Login first to create support tickets.")}}</h6>
             {%endif%}
