@@ -28,8 +28,8 @@ statusFilter.onchange = function(e) {
     }
 }
 clearFilters.addEventListener('click', function() {
-    issues_table.columns(1).search("").draw();
     issues_table.columns(2).search("").draw();
+    issues_table.columns(3).search("").draw();
     siteFilter.value = "none";
     statusFilter.value = "none";
 });

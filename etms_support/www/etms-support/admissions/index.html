@@ -27,22 +27,22 @@
             <!-- Admissions Table Filters -->
             <div class="etms-search-filters form-group">
                 <select id="etms-search-filters-site" class="form-control">
-                    <option selected value="none">{{_('Site')}}</option>
+                    <option selected value="none" style="visibility: hidden;">{{_('Site')}}</option>
                     {% for action_site in action_sites %}
                         <option value="{{action_site.name}}">{{action_site.name}}</option>
                     {% endfor %}
                 </select>
                 <select id="etms-search-filters-approval-status" class="form-control">
-                    <option selected value="none">{{_('Approval Status')}}</option>
-                    <option value="Open">{{_("Open")}}</option>
-                    <option value="Approved">{{_("Approved")}}</option>
-                    <option value="Not Approved">{{_("Not Approved")}}</option>
+                    <option selected value="none" style="visibility: hidden;">{{_('Approval Status')}}</option>
+                    <option value="{{_("Open")}}">{{_("Open")}}</option>
+                    <option value="{{_("Approved")}}">{{_("Approved")}}</option>
+                    <option value="{{_("Not Approved")}}">{{_("Not Approved")}}</option>
                 </select>
                 <select id="etms-search-filters-action-status" class="form-control">
-                    <option selected value="none">{{_('Action Status')}}</option>
-                    <option value="Open">{{_("Open")}}</option>
-                    <option value="Completed">{{_("Completed")}}</option>
-                    <option value="Cancelled">{{_("Cancelled")}}</option>
+                    <option selected value="none" style="visibility: hidden;">{{_('Action Status')}}</option>
+                    <option value="{{_("Open")}}">{{_("Open")}}</option>
+                    <option value="{{_("Completed")}}">{{_("Completed")}}</option>
+                    <option value="{{_("Cancelled")}}">{{_("Cancelled")}}</option>
                 </select>
                 <button class="btn btn-default etms-clear-filters" type="button" style="width: auto;">
                     <i class="bi bi-x-lg"></i>

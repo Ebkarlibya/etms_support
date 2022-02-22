@@ -75,7 +75,13 @@
             <label for="issue">{{_("Action Related Issue")}}</label>
             <input type="text" id="issue" readonly class="form-control" value="{{aoes.issue}}">
         </div>
-
+        {% if aoes.action_status == "Cancelled" and aoes.cancelation_reason %}
+            <div class="col-md-4 form-group">
+                <label for="cancelation_reason">{{_("Cancelation Reason")}}</label>
+                <input type="text" id="cancelation_reason" readonly class="form-control" value="{{aoes.cancelation_reason}}">
+            </div>
+        {% endif %}
+    </div>
     <!-- section three -->
     <div class="row">
         <div class="col-md-4 form-group">

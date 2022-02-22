@@ -31,17 +31,17 @@
             <!-- Tickets Table filters -->
             <div class="etms-search-filters form-group">
                 <select id="etms-search-filters-site" class="form-control">
-                    <option selected value="none">{{_('Site')}}</option>
+                    <option selected value="none" style="visibility: hidden;">{{_('Site')}}</option>
                     {% for site in sites %}
                     <option value="{{site.name}}">{{site.name}}</option>
                     {% endfor %}
                     
                 </select>
                 <select id="etms-search-filters-status" class="form-control">
-                    <option selected value="none">{{_('Status')}}</option>
-                    <option value="open">{{_("Open")}}</option>
-                    <option value="closed">{{_("Closed")}}</option>
-                    <option value="replied">{{_("Replied")}}</option>
+                    <option selected value="none" style="visibility: hidden;">{{_('Status')}}</option>
+                    <option value="{{_("Open")}}">{{_("Open")}}</option>
+                    <option value="{{_("Closed")}}">{{_("Closed")}}</option>
+                    <option value="{{_("Replied")}}">{{_("Replied")}}</option>
                 </select>
                 <button class="btn btn-default etms-clear-filters" type="button" style="width: auto;">
                     <i class="bi bi-x-lg"></i>

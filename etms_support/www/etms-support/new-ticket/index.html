@@ -18,7 +18,7 @@
             <div class="form-group mb-10">
                 <label for="etms-site-name" class="reqd">{{_("Related Site")}}</label>
                 <select id="etms-site-name" class="custom-select form-control" style="padding: 0px 25px 0px 25px;">
-                    <option value="none" selected>{{_("Please select your site")}}</option>
+                    <option value="none" selected style="visibility: hidden;">{{_("Please select your site")}}</option>
                     {% for site in sites %}
                         <option value="{{site.name}}">{{site.name}}</option>
                     {% endfor %}
@@ -27,7 +27,7 @@
             <div class="form-group mb-10">
                 <label for="etms-site-issue-type" class="reqd">{{_("Issue Type")}}</label>
                 <select id="etms-site-issue-type" class="custom-select form-control" style="padding: 0px 25px 0px 25px;">
-                    <option value="none" selected>{{_("Issue Type")}}</option>
+                    <option value="none" selected style="visibility: hidden;">{{_("Issue Type")}}</option>
                     {% for issue_type in issue_types %}
                         <option value="{{issue_type.name}}">{{_(issue_type.name)}}</option>
                     {% endfor %}

@@ -9,7 +9,6 @@ siteFilter.onchange = function(e) {
     var site_name = e.target.value;
 
     if(site_name != "none") {
-        console.log(site_name);
         admissions_table.columns(0).search(site_name);
         admissions_table.columns(0).draw();
     } else {
