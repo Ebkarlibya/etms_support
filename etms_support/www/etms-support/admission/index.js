@@ -4,7 +4,8 @@ var aoes_confirm_title_approve = document.querySelector("meta[name='aoes-confirm
 var aoes_confirm_title_reject = document.querySelector("meta[name='aoes-confirm-title-reject']").content;
 var aoes_confirm_approve = document.querySelector("meta[name='aoes-confirm-approve']").content;
 var aoes_confirm_reject = document.querySelector("meta[name='aoes-confirm-reject']").content;
-var aoes_confirm_cancle = document.querySelector("meta[name='aoes-confirm-cancle']").content;
+var aoes_confirm_cancel = document.querySelector("meta[name='aoes-confirm-cancel']").content;
+var etms_support = document.querySelector("meta[name='etms_support']").content;
 
 var aoes_docname = document.querySelector("#aoes_docname");
 
@@ -14,10 +15,10 @@ if(aoes_approval_selector){
             var text = e.target.value == "Approved" ? aoes_confirm_title_approve : aoes_confirm_title_reject;
             alertify.confirm(text, function(){
                 set_approval_status(e.target.value);
-            }).set('closable', false).set('title', 'ETMS Support').set('labels', {
+            }).set('closable', false).set('title', etms_support).set('labels', {
                 label: 'AOES',
                 ok: e.target.value == "Approved" ? aoes_confirm_approve : aoes_confirm_reject,
-                cancel: aoes_confirm_cancle
+                cancel: aoes_confirm_cancel
             }); 
         }
     }
