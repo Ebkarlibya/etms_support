@@ -27,7 +27,7 @@ def get_context(ctx):
             "company",
             "raised_by",
             "description",
-            "related_site"
+            "etms_erp_site"
         ], filters=fdict)
     sites = frappe.get_all("ETMS ERP Site", filters={
         "contact_email": user.email
