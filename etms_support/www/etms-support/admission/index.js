@@ -1,4 +1,5 @@
 var aoes_approval_selector = document.querySelector("#customer_site_access_approval");
+var issueField = document.querySelector("#issue");
 var aoes_confirm_title_approve = document.querySelector("meta[name='aoes-confirm-title-approve']").content;
 var aoes_confirm_title_reject = document.querySelector("meta[name='aoes-confirm-title-reject']").content;
 var aoes_confirm_approve = document.querySelector("meta[name='aoes-confirm-approve']").content;
@@ -33,4 +34,12 @@ function set_approval_status(approval_status) {
             }, 1200);
         }
     })
+}
+if(issueField && issueField.value != "None") {
+    issueField.style.color = "blue";
+    issueField.style.cursor = "pointer";
+    issueField.addEventListener("click", function() {
+        ticketUrl = "/etms-support/ticket?name=" + this.value;
+        window.open(ticketUrl, "_blank").focus();
+    });
 }
