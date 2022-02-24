@@ -27,7 +27,7 @@
             <!-- Admissions Table Filters -->
             <div class="etms-search-filters form-group">
                 <select id="etms-search-filters-site" class="form-control">
-                    <option selected value="none" style="visibility: hidden;">{{_('Site')}}</option>
+                    <option selected value="none" style="visibility: hidden;">{{_('Access Request No.')}}</option>
                     {% for action_site in action_sites %}
                         <option value="{{action_site.name}}">{{action_site.name}}</option>
                     {% endfor %}
