@@ -18,7 +18,7 @@ def submit_ticket(subject, description, site, issue_type):
     ticket.subject = subject
     ticket.description = description
     ticket.raised_by = user.name
-    ticket.related_site = site
+    ticket.etms_erp_site = site
     # ticket.user_name = user.full_name
     # ticket.user_image = user.user_image
 
