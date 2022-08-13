@@ -1,0 +1,100 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2022-08-13 10:47:39.538445",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "enabled",
+  "settings_security",
+  "allow_new_users_registrations",
+  "domain",
+  "minimum_client_version",
+  "column_break_5",
+  "api_key",
+  "api_secret",
+  "general_settings_section"
+ ],
+ "fields": [
+  {
+   "default": "1",
+   "fieldname": "enabled",
+   "fieldtype": "Check",
+   "label": "Enabled"
+  },
+  {
+   "fieldname": "settings_security",
+   "fieldtype": "Section Break",
+   "label": "Settings & Security"
+  },
+  {
+   "default": "1",
+   "fieldname": "allow_new_users_registrations",
+   "fieldtype": "Check",
+   "label": "Allow New Users Registrations"
+  },
+  {
+   "fieldname": "domain",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Domain",
+   "reqd": 1
+  },
+  {
+   "default": "3.0.0",
+   "description": "Notify users lower than this version to update the client app.",
+   "fieldname": "minimum_client_version",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Minimum Client Version",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_5",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "api_key",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "API Key",
+   "reqd": 1
+  },
+  {
+   "columns": 11,
+   "fieldname": "api_secret",
+   "fieldtype": "Password",
+   "in_list_view": 1,
+   "label": "API Secret",
+   "reqd": 1
+  },
+  {
+   "fieldname": "general_settings_section",
+   "fieldtype": "Section Break",
+   "label": "General Settings"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2022-08-13 10:49:21.575152",
+ "modified_by": "Administrator",
+ "module": "Etms Support Backend",
+ "name": "ETS Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

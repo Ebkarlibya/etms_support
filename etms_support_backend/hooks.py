@@ -186,3 +186,25 @@ user_data_fields = [
 # Recommended only for DocTypes which have limited documents with untranslated names
 # For example: Role, Gender, etc.
 # translated_search_doctypes = []
+
+fixtures = [
+    {
+		"dt":"Role", 
+		"filters": [["name", "in", (
+            "ETS Support User",
+            "ETS Support Moderator"
+        	)]
+		]
+	},
+    {
+    "doctype":
+    "Custom Field",
+    "filters": [[
+        "fieldname", "in",
+        (
+        # Customer
+        "ets_section",
+        "ets_is_customer_email_verified"
+		)
+    ]]
+}]
